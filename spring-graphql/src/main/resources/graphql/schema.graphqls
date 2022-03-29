@@ -3,14 +3,21 @@ type Query {
     findWad(name: String!, author: String): String!
     wad: Wad!
     topWads: [String!]!
+    wads: [Wad]
 }
 
 type Wad {
     id : ID!
     name : String!
+    genre: String
+    iwad: String
+    maps: [Map]
 }
 
 type Map {
     id : ID!
     name : String!
+    enemies: Int
+    author: String
+    wad: Wad
 }
