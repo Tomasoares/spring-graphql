@@ -1,10 +1,10 @@
-package com.udemy.springgraphql.queryresolver;
+package com.udemy.springgraphql.graphql.queryresolver;
 
 import com.coxautodev.graphql.tools.GraphQLResolver;
-import com.udemy.springgraphql.model.Map;
-import com.udemy.springgraphql.model.Wad;
+import com.udemy.springgraphql.graphql.type.Map;
+import com.udemy.springgraphql.graphql.type.Wad;
 import org.springframework.stereotype.Component;
-import java.util.List;
+
 import java.util.UUID;
 
 @Component

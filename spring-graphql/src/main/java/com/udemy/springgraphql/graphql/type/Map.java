@@ -1,4 +1,4 @@
-package com.udemy.springgraphql.model;
+package com.udemy.springgraphql.graphql.type;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,15 +7,15 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Data
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Wad {
+public class Map {
 
     private UUID id;
     private String name;
-    private String genre;
-    private String iwad;
+    private int enemies;
+    private String author;
 
 }
