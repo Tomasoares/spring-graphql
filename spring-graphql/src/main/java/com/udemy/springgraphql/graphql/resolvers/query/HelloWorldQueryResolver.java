@@ -1,4 +1,4 @@
-package com.udemy.springgraphql.graphql.queryresolver;
+package com.udemy.springgraphql.graphql.resolvers.query;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.udemy.springgraphql.graphql.type.Wad;
