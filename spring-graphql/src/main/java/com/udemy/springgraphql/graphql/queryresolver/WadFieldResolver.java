@@ -3,23 +3,29 @@ package com.udemy.springgraphql.graphql.queryresolver;
 import com.coxautodev.graphql.tools.GraphQLResolver;
 import com.udemy.springgraphql.graphql.type.Map;
 import com.udemy.springgraphql.graphql.type.Wad;
+import com.udemy.springgraphql.service.MapService;
+import com.udemy.springgraphql.service.WadService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 @Component
+@Log4j2
 public class WadFieldResolver implements GraphQLResolver<Wad> {
 
-    public List<Map> maps(Wad wad) {
-        return List.of(newMap(wad));
+    private MapService service;
+
+    public WadFieldResolver(MapService service) {
+        super();
+        this.service = service;
     }
 
-    private Map newMap(Wad wad) {
-        return Map.builder()
-                .id(UUID.randomUUID())
-                .author("Skillsaw")
-                .name("Entryway")
-                .enemies(76)
-                .build();
+    public List<Map> maps(Wad wad) {
+        log.info("Retrieving maps from wad {}", wad.getId());
+        List<Map> maps = this.service.findAll(wad.getId());
+
+        log.info("Maps retrieved: {}", maps);
+        return maps;
     }
 }
