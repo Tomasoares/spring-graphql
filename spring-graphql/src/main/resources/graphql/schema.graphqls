@@ -2,8 +2,9 @@ type Query {
     helloWorld : String!
     findWad(name: String!, author: String): String!
     wad: Wad!
-    topWads: [String!]!
     wads: [Wad]
+    topWads: [String!]!
+    cacowards(count: Int!, page: Int!): [Wad]!
 }
 
 type Wad {

@@ -11,4 +11,6 @@ public interface WadService {
 
     List<Wad> findAll();
 
+    List<Wad> getCacowards(int count, int page);
+    
 }

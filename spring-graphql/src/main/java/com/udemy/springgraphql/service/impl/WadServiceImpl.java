@@ -3,6 +3,8 @@ package com.udemy.springgraphql.service.impl;
 import com.udemy.springgraphql.graphql.type.Wad;
 import com.udemy.springgraphql.jpa.repository.WadRepository;
 import com.udemy.springgraphql.service.WadService;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,7 +29,17 @@ public class WadServiceImpl implements WadService {
 
     @Override
     public List<Wad> findAll() {
-        return repository.findAll()
+        return convertList(repository.findAll());
+    }
+
+    @Override
+    public List<Wad> getCacowards(int count, int page) {
+        Pageable repositoryPage = PageRequest.of(page, count);
+        return convertList(repository.findAll(repositoryPage).toList());
+    }
+
+    private List<Wad> convertList(List<com.udemy.springgraphql.jpa.model.Wad> fromDb) {
+        return fromDb
                 .stream()
                 .map(this::toGraphQLWad)
                 .collect(Collectors.toList());
