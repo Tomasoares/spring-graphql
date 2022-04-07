@@ -22,3 +22,21 @@ type Map {
     author: String
     wad: Wad
 }
+
+type Mutation {
+    createWad(wad: WadInput): ID!
+    createMap(map: MapInput): ID!
+}
+
+input WadInput {
+    name : String!
+    genre: String
+    iwad: String
+}
+
+input MapInput {
+    name: String!
+    author: String!
+    enemies: Int
+    wadId: ID!
+}
