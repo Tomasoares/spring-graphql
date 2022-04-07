@@ -7,10 +7,6 @@ type Query {
     cacowards(count: Int!, page: Int!): [Wad]!
 }
 
-type Mutation {
-    createWad(wad : WadInput): ID!
-}
-
 type Wad {
     id : ID!
     name : String!
@@ -27,8 +23,20 @@ type Map {
     wad: Wad
 }
 
+type Mutation {
+    createWad(wad: WadInput): ID!
+    createMap(map: MapInput): ID!
+}
+
 input WadInput {
     name : String!
     genre: String
     iwad: String
+}
+
+input MapInput {
+    name: String!
+    author: String!
+    enemies: Int
+    wadId: ID!
 }

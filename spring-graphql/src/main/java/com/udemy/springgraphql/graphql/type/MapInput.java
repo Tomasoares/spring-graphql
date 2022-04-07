@@ -5,14 +5,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class WadInput {
+@NoArgsConstructor
+public class MapInput {
 
     private String name;
-    private String iwad;
-    private String genre;
+    private String author;
+    private Integer enemies;
+    private UUID wadId;
 
 }

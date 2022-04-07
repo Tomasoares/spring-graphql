@@ -1,6 +1,8 @@
 package com.udemy.springgraphql.service.impl;
 
 import com.udemy.springgraphql.graphql.type.Map;
+import com.udemy.springgraphql.graphql.type.MapInput;
+import com.udemy.springgraphql.jpa.model.Wad;
 import com.udemy.springgraphql.jpa.repository.MapRepository;
 import com.udemy.springgraphql.service.MapService;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,25 @@ public class MapServiceImpl implements MapService {
         return maps.stream()
                 .map(this::toGraphQLMap)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public UUID createMap(MapInput input) {
+        com.udemy.springgraphql.jpa.model.Map map = toJPAMap(input);
+        this.repository.saveAndFlush(map);
+
+        return map.getId();
+    }
+
+    private com.udemy.springgraphql.jpa.model.Map toJPAMap(MapInput input) {
+        Wad wad = Wad.builder().id(input.getWadId()).build();
+
+        return com.udemy.springgraphql.jpa.model.Map.builder()
+                .author(input.getAuthor())
+                .name(input.getName())
+                .enemies(input.getEnemies())
+                .wad(wad)
+                .build();
     }
 
     private Map toGraphQLMap(com.udemy.springgraphql.jpa.model.Map map) {

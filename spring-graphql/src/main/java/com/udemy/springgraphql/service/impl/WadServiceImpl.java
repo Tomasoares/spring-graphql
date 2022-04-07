@@ -1,6 +1,7 @@
 package com.udemy.springgraphql.service.impl;
 
 import com.udemy.springgraphql.graphql.type.Wad;
+import com.udemy.springgraphql.graphql.type.WadInput;
 import com.udemy.springgraphql.jpa.repository.WadRepository;
 import com.udemy.springgraphql.service.WadService;
 import org.springframework.data.domain.PageRequest;
@@ -38,6 +39,13 @@ public class WadServiceImpl implements WadService {
         return convertList(repository.findAll(repositoryPage).toList());
     }
 
+    @Override
+    public UUID createWad(WadInput input) {
+        com.udemy.springgraphql.jpa.model.Wad jpa = toJPA(input);
+        this.repository.saveAndFlush(jpa);
+        return jpa.getId();
+    }
+
     private List<Wad> convertList(List<com.udemy.springgraphql.jpa.model.Wad> fromDb) {
         return fromDb
                 .stream()
@@ -51,6 +59,14 @@ public class WadServiceImpl implements WadService {
                 .name(wad.getName())
                 .genre(wad.getGenre())
                 .iwad(wad.getIwad())
+                .build();
+    }
+
+    private com.udemy.springgraphql.jpa.model.Wad toJPA(WadInput input) {
+        return com.udemy.springgraphql.jpa.model.Wad.builder()
+                .name(input.getName())
+                .genre(input.getGenre())
+                .iwad(input.getIwad())
                 .build();
     }
 }
