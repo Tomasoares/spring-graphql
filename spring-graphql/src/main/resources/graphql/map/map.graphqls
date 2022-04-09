@@ -1,0 +1,7 @@
+type Map {
+    id : ID!
+    name : String!
+    enemies: Int
+    author: String
+    wad: Wad
+}
