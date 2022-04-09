@@ -1,0 +1,8 @@
+type Query {
+    helloWorld : String!
+    findWad(name: String!, author: String): String!
+    wad: Wad!
+    wads: [Wad]
+    topWads: [String!]!
+    cacowards(count: Int!, page: Int!): [Wad]!
+}

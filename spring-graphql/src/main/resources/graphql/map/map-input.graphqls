@@ -1,0 +1,6 @@
+input MapInput {
+    name: String!
+    author: String!
+    enemies: Int
+    wadId: ID!
+}

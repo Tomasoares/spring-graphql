@@ -1,0 +1,7 @@
+type Wad {
+    id : ID!
+    name : String!
+    genre: String
+    iwad: String
+    maps: [Map]
+}
