@@ -1,0 +1,14 @@
+query {
+    wads {
+        id,
+        name,
+        genre,
+        iwad,
+        maps {
+            id,
+            name,
+            enemies,
+            author
+        }
+    }
+}

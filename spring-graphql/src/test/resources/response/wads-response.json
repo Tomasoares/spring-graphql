@@ -1,61 +1,61 @@
 {
-"data": {
-"wads": [
-{
-"id": "a15d5780-b37d-11ec-b909-0242ac120002",
-"name": "Valiant",
-"genre": "Modern",
-"iwad": "Doom 2",
-"maps": [
-{
-"id": "f4c55928-97e5-4e03-b6de-d8b720033f80",
-"name": "Entrance",
-"enemies": 512,
-"author": "Skillsaw"
-}
-]
-},
-{
-"id": "c9b5a5d4-b37d-11ec-b909-0242ac120002",
-"name": "Plutonia 2",
-"genre": "Arcade",
-"iwad": "Plutonia",
-"maps": [
-{
-"id": "b95f5661-2cd9-4508-a2ce-0d765c7fb38d",
-"name": "Entryway",
-"enemies": 32,
-"author": "Casali Brothers"
-}
-]
-},
-{
-"id": "f2fe8302-b37d-11ec-b909-0242ac120002",
-"name": "Moonblood",
-"genre": "Mixed Classic Modern",
-"iwad": "Doom 2",
-"maps": [
-{
-"id": "ea03b49d-9505-41ea-8702-3ee4ab3b9a2c",
-"name": "Starport",
-"enemies": 19,
-"author": "Deadwing"
-},
-{
-"id": "8275fbdc-d3db-4d44-9a93-774a0c72a791",
-"name": "Ritual Site",
-"enemies": 212,
-"author": "Deadwing"
-}
-]
-},
-{
-"id": "24f0241c-38a2-4777-aafe-b7f9df60d2b4",
-"name": "No End In Sight",
-"genre": "Classic",
-"iwad": "Doom",
-"maps": []
-}
-]
-}
+  "data": {
+    "wads": [
+      {
+        "id": "a15d5780-b37d-11ec-b909-0242ac120002",
+        "name": "Valiant",
+        "genre": "Modern",
+        "iwad": "Doom 2",
+        "maps": [
+          {
+            "id": "f4c55928-97e5-4e03-b6de-d8b720033f80",
+            "name": "Entrance",
+            "enemies": 512,
+            "author": "Skillsaw"
+          }
+        ]
+      },
+      {
+        "id": "c9b5a5d4-b37d-11ec-b909-0242ac120002",
+        "name": "Plutonia 2",
+        "genre": "Arcade",
+        "iwad": "Plutonia",
+        "maps": [
+          {
+            "id": "b95f5661-2cd9-4508-a2ce-0d765c7fb38d",
+            "name": "Entryway",
+            "enemies": 32,
+            "author": "Casali Brothers"
+          }
+        ]
+      },
+      {
+        "id": "f2fe8302-b37d-11ec-b909-0242ac120002",
+        "name": "Moonblood",
+        "genre": "Mixed Classic Modern",
+        "iwad": "Doom 2",
+        "maps": [
+          {
+            "id": "ea03b49d-9505-41ea-8702-3ee4ab3b9a2c",
+            "name": "Starport",
+            "enemies": 19,
+            "author": "Deadwing"
+          },
+          {
+            "id": "8275fbdc-d3db-4d44-9a93-774a0c72a791",
+            "name": "Ritual Site",
+            "enemies": 212,
+            "author": "Deadwing"
+          }
+        ]
+      },
+      {
+        "id": "24f0241c-38a2-4777-aafe-b7f9df60d2b4",
+        "name": "No End In Sight",
+        "genre": "Classic",
+        "iwad": "Doom",
+        "maps": []
+      }
+    ]
+  }
 }
