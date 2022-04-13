@@ -1,0 +1,6 @@
+query {
+    wad {
+        id,
+        name
+    }
+}

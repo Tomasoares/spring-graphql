@@ -1,0 +1,8 @@
+mutation {
+    createMap (map: {
+        name: "entryway"
+        author: "Romero"
+        enemies: 231
+        wadId: "f2fe8302-b37d-11ec-b909-0242ac120002"
+    })
+}
