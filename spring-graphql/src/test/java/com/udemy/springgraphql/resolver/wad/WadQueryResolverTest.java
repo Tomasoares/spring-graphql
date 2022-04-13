@@ -3,32 +3,29 @@ package com.udemy.springgraphql.resolver.wad;
 import com.graphql.spring.boot.test.GraphQLResponse;
 import com.graphql.spring.boot.test.GraphQLTestTemplate;
 import com.udemy.springgraphql.TestApplication;
-import com.udemy.springgraphql.util.JsonReaderUtil;
-
 import org.junit.jupiter.api.Test;
-import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.IOException;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
 public class WadQueryResolverTest {
 
     @Autowired
-    private GraphQLTestTemplate graphQLTestTemplate;
+    private GraphQLTestTemplate template;
 
     @Test
-    public void givenWadsQuery_whenWedsQuery_itShouldReturnWadsResponse() throws Exception {
-        GraphQLResponse response = graphQLTestTemplate.postForResource("request/wads-query.graphqls");
-        assertThat(response.isOk());
+    public void givenWadQuery_whenWadQuery_itShouldReturnWadResponse() throws Exception {
+        GraphQLResponse response = template.postForResource("request/wad-query.graphqls");
+        assertThat("response should be ok", response.isOk());
 
-        String read = JsonReaderUtil.read("response/wads-response.json");
-        assertEquals(read, response.getRawResponse().getBody(), true);
+        String id = response.get("$.data.wad.id");
+        String name = response.get("$.data.wad.name");
 
+        assertThat(id, is(notNullValue()));
+        assertThat(name, is("Valiant"));
     }
-
 }

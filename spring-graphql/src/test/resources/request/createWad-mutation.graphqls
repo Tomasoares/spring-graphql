@@ -1,0 +1,7 @@
+mutation {
+    createWad (wad: {
+        name: "BTSX"
+        genre: "Adventure"
+        iwad: "Doom II"
+    })
+}

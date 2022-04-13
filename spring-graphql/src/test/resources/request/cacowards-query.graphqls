@@ -1,0 +1,17 @@
+query {
+    cacowards (count: 2,page: 1) {
+        id,
+        name,
+        genre,
+        iwad,
+        maps {
+            id,
+            name,
+            enemies,
+            author,
+            wad {
+                id
+            }
+        }
+    }
+}
