@@ -3,5 +3,6 @@ type Wad {
     name : String!
     genre: String
     iwad: String
+    mapCount: Int
     maps: [Map]
 }
