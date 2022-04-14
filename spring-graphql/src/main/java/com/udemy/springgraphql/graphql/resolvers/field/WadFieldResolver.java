@@ -2,6 +2,7 @@ package com.udemy.springgraphql.graphql.resolvers.field;
 
 import com.coxautodev.graphql.tools.GraphQLResolver;
 import com.udemy.springgraphql.graphql.type.Map;
+import com.udemy.springgraphql.graphql.type.Review;
 import com.udemy.springgraphql.graphql.type.Wad;
 import com.udemy.springgraphql.service.MapService;
 import lombok.extern.log4j.Log4j2;
@@ -31,5 +32,14 @@ public class WadFieldResolver implements GraphQLResolver<Wad> {
     public Integer mapCount(Wad wad) {
         log.info("Counting number of maps of wad: {}", wad.getId());
         return this.service.getMapCountByWadId(wad);
+    }
+
+    public List<Review> reviews(Wad wad, Integer first) {
+        return List.of(Review.builder()
+                .id(UUID.randomUUID())
+                .author("rd")
+                .description("good wad")
+                .rating(5)
+                .build());
     }
 }
