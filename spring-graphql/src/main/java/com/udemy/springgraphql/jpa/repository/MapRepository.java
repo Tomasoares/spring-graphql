@@ -11,4 +11,6 @@ public interface MapRepository extends JpaRepository<Map, UUID> {
 
     List<Map> findByWadId(UUID idWad);
 
+    Integer countByWadId(UUID id);
+
 }

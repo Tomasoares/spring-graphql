@@ -38,6 +38,11 @@ public class MapServiceImpl implements MapService {
         return map.getId();
     }
 
+    @Override
+    public Integer getMapCountByWadId(com.udemy.springgraphql.graphql.type.Wad wad) {
+        return this.repository.countByWadId(wad.getId());
+    }
+
     private com.udemy.springgraphql.jpa.model.Map toJPAMap(MapInput input) {
         Wad wad = Wad.builder().id(input.getWadId()).build();
 

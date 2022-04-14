@@ -30,6 +30,6 @@ public class WadFieldResolver implements GraphQLResolver<Wad> {
 
     public Integer mapCount(Wad wad) {
         log.info("Counting number of maps of wad: {}", wad.getId());
-        return 4;
+        return this.service.getMapCountByWadId(wad);
     }
 }
