@@ -2,11 +2,12 @@ package com.udemy.springgraphql.jpa.repository;
 
 import com.udemy.springgraphql.jpa.model.Map;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.UUID;
 
-@org.springframework.stereotype.Repository
+@Repository
 public interface MapRepository extends JpaRepository<Map, UUID> {
 
     List<Map> findByWadId(UUID idWad);

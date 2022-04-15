@@ -5,5 +5,5 @@ type Wad {
     iwad: String
     mapCount: Int
     maps: [Map]
-    reviews(first: Int): [Review]
+    reviews(count: Int): [Review]
 }
