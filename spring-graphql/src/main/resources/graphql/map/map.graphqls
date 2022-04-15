@@ -4,4 +4,5 @@ type Map {
     enemies: Int
     author: String
     wad: Wad
+    reviews(count: Int) : [Review]
 }
