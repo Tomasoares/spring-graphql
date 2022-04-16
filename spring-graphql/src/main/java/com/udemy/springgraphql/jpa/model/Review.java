@@ -30,4 +30,8 @@ public class Review {
     @JoinColumn(name = "wadId")
     private Wad wad;
 
+    @ManyToOne
+    @JoinColumn(name = "mapId")
+    private Map map;
+
 }

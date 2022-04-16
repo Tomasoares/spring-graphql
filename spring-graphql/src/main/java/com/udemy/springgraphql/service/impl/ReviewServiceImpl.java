@@ -28,6 +28,14 @@ public class ReviewServiceImpl implements ReviewService {
         return covertList(reviews);
     }
 
+    @Override
+    public List<Review> findReviewsByMapId(UUID mapId, int count) {
+        PageRequest page = PageRequest.of(0, count);
+        List<com.udemy.springgraphql.jpa.model.Review> reviews = this.repository.findAllByMapId(mapId, page);
+
+        return covertList(reviews);
+    }
+
     private List<Review> covertList(List<com.udemy.springgraphql.jpa.model.Review> reviews) {
         return reviews.stream()
                 .map(this::toGraphQL)

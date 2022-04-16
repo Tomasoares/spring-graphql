@@ -13,4 +13,6 @@ public interface ReviewRepository extends JpaRepository<Review, UUID> {
 
     List<Review> findAllByWadId(UUID wadId, Pageable page);
 
+    List<Review> findAllByMapId(UUID mapId, Pageable page);
+
 }
