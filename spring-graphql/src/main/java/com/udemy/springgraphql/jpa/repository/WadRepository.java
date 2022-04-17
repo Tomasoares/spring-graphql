@@ -13,4 +13,6 @@ public interface WadRepository extends JpaRepository<Wad, UUID> {
     @Query("SELECT m.wad FROM Map m WHERE m.id = :idMap")
     Wad findByMapId(UUID idMap);
 
+    @Query("SELECT r.wad FROM Review r WHERE r.id = :idReview")
+    Wad findByReviewId(UUID idReview);
 }

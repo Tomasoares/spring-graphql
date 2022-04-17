@@ -3,4 +3,5 @@ type Review {
     author: String
     description: String
     rating: Int
+    wad: Wad
 }

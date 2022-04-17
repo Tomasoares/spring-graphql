@@ -24,6 +24,7 @@ public class WadServiceImpl implements WadService {
 
     @Override
     public Wad findWadByMap(UUID idMap) {
+        //TODO: use optional
         com.udemy.springgraphql.jpa.model.Wad wad = repository.findByMapId(idMap);
         return toGraphQLWad(wad);
     }
@@ -44,6 +45,12 @@ public class WadServiceImpl implements WadService {
         com.udemy.springgraphql.jpa.model.Wad jpa = toJPA(input);
         this.repository.saveAndFlush(jpa);
         return jpa.getId();
+    }
+
+    @Override
+    public Wad findWadByReview(UUID reviewId) {
+        com.udemy.springgraphql.jpa.model.Wad found = this.repository.findByReviewId(reviewId);
+        return toGraphQLWad(found);
     }
 
     private List<Wad> convertList(List<com.udemy.springgraphql.jpa.model.Wad> fromDb) {
