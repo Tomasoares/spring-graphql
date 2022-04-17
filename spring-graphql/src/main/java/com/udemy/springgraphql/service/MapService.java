@@ -17,4 +17,6 @@ public interface MapService {
 
     Integer getMapCountByWadId(Wad wad);
 
+    Map findMapByReview(UUID id);
+    
 }

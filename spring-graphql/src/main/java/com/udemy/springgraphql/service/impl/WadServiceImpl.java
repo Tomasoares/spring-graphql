@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -25,8 +26,8 @@ public class WadServiceImpl implements WadService {
     @Override
     public Wad findWadByMap(UUID idMap) {
         //TODO: use optional
-        com.udemy.springgraphql.jpa.model.Wad wad = repository.findByMapId(idMap);
-        return toGraphQLWad(wad);
+        Optional<com.udemy.springgraphql.jpa.model.Wad> wad = repository.findByMapId(idMap);
+        return wad.map(this::toGraphQLWad).orElse(null);
     }
 
     @Override
@@ -49,8 +50,8 @@ public class WadServiceImpl implements WadService {
 
     @Override
     public Wad findWadByReview(UUID reviewId) {
-        com.udemy.springgraphql.jpa.model.Wad found = this.repository.findByReviewId(reviewId);
-        return toGraphQLWad(found);
+        Optional<com.udemy.springgraphql.jpa.model.Wad> found = this.repository.findByReviewId(reviewId);
+        return found.map(this::toGraphQLWad).orElse(null);
     }
 
     private List<Wad> convertList(List<com.udemy.springgraphql.jpa.model.Wad> fromDb) {
