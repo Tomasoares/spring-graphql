@@ -5,4 +5,5 @@ type Query {
     wads: [Wad]
     topWads: [String!]!
     cacowards(count: Int!, page: Int!): [Wad]!
+    reviews(count: Int!, page: Int!): [Review]!
 }

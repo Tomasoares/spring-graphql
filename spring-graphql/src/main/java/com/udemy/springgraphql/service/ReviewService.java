@@ -10,4 +10,7 @@ public interface ReviewService {
     List<Review> findReviewsByWadId(UUID wadId, int count);
 
     List<Review> findReviewsByMapId(UUID mapId, int count);
+
+    List<Review> findAll(Integer offset, Integer size);
+
 }
