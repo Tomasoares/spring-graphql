@@ -1,0 +1,6 @@
+query {
+    wads {
+        id,
+        mapCount
+    }
+}

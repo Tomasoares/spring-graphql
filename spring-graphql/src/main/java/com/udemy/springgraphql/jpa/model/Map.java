@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -30,5 +31,8 @@ public class Map {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "wad_id")
     private Wad wad;
+
+    @OneToMany(mappedBy = "map", fetch = FetchType.LAZY)
+    private Set<Review> reviews;
 
 }

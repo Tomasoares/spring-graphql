@@ -7,30 +7,31 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "wad")
+@Table(name = "review")
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Wad {
+@Builder
+public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "UUID")
     @Type(type = "uuid-char")
     private UUID id;
 
-    private String name;
-    private String genre;
-    private String iwad;
+    private String author;
+    private String description;
+    private int rating;
 
-    @OneToMany(mappedBy = "wad", fetch = FetchType.LAZY)
-    private Set<Map> maps;
+    @ManyToOne
+    @JoinColumn(name = "wadId")
+    private Wad wad;
 
-    @OneToMany(mappedBy = "wad", fetch = FetchType.LAZY)
-    private Set<Review> reviews;
+    @ManyToOne
+    @JoinColumn(name = "mapId")
+    private Map map;
 
 }

@@ -15,5 +15,7 @@ public interface WadService {
     List<Wad> getCacowards(int count, int page);
 
     UUID createWad(WadInput input);
-    
+
+    Wad findWadByReview(UUID id);
+
 }

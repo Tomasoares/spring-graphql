@@ -8,6 +8,7 @@ import com.udemy.springgraphql.service.MapService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -36,6 +37,18 @@ public class MapServiceImpl implements MapService {
         this.repository.saveAndFlush(map);
 
         return map.getId();
+    }
+
+    @Override
+    public Integer getMapCountByWadId(com.udemy.springgraphql.graphql.type.Wad wad) {
+        return this.repository.countByWadId(wad.getId());
+    }
+
+    @Override
+    public Map findMapByReview(UUID idReview) {
+        Optional<com.udemy.springgraphql.jpa.model.Map> map = this.repository.findByReviewId(idReview);
+
+        return map.map(this::toGraphQLMap).orElse(null);
     }
 
     private com.udemy.springgraphql.jpa.model.Map toJPAMap(MapInput input) {
