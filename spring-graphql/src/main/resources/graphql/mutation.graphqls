@@ -1,4 +1,5 @@
 type Mutation {
     createWad(wad: WadInput): ID!
     createMap(map: MapInput): ID!
+    createReview(review: ReviewInput): ID!
 }

@@ -1,6 +1,7 @@
 package com.udemy.springgraphql.graphql.resolvers.mutation;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import com.udemy.springgraphql.graphql.resolvers.subscription.WadPublisher;
 import com.udemy.springgraphql.graphql.type.WadInput;
 import com.udemy.springgraphql.service.WadService;
 import lombok.extern.log4j.Log4j2;

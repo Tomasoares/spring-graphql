@@ -1,0 +1,7 @@
+input ReviewInput {
+    author: String!
+    description: String
+    rating: Int!
+    wadId: ID
+    mapId: ID
+}
