@@ -1,5 +1,6 @@
 package com.udemy.springgraphql.service.impl;
 
+import com.udemy.springgraphql.TestApplication;
 import com.udemy.springgraphql.graphql.type.Map;
 import com.udemy.springgraphql.service.MapService;
 import org.junit.jupiter.api.Assertions;
@@ -13,7 +14,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import java.util.List;
 import java.util.UUID;
 
-@SpringBootTest( webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
 @ExtendWith(SpringExtension.class)
 public class MapServiceImplTest {
 

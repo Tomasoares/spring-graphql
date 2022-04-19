@@ -1,9 +1,11 @@
 package com.udemy.springgraphql.service.impl;
 
+import com.udemy.springgraphql.graphql.resolvers.subscription.WadPublisher;
 import com.udemy.springgraphql.graphql.type.Wad;
 import com.udemy.springgraphql.graphql.type.WadInput;
 import com.udemy.springgraphql.jpa.repository.WadRepository;
 import com.udemy.springgraphql.service.WadService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -14,13 +16,17 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class WadServiceImpl implements WadService {
 
-    private WadRepository repository;
+    private final WadRepository repository;
 
-    public WadServiceImpl(WadRepository repository) {
+    private final WadPublisher publisher;
+
+    public WadServiceImpl(WadRepository repository, WadPublisher publisher) {
         super();
         this.repository = repository;
+        this.publisher = publisher;
     }
 
     @Override
@@ -45,6 +51,10 @@ public class WadServiceImpl implements WadService {
     public UUID createWad(WadInput input) {
         com.udemy.springgraphql.jpa.model.Wad jpa = toJPA(input);
         this.repository.saveAndFlush(jpa);
+
+        log.info("Adding new post {} to publisher", jpa);
+        this.publisher.pushWad(toGraphQLWad(jpa));
+
         return jpa.getId();
     }
 
