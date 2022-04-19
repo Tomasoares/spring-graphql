@@ -1,3 +1,4 @@
 type Subscription {
     listenNewWads: Wad!
+    listenNewWadsByIwad(iwad: String): Wad!
 }

@@ -22,4 +22,9 @@ public class WadSubscriptionResolver implements GraphQLSubscriptionResolver {
         return publisher.retrieveWad();
     }
 
+    public Publisher<Wad> listenNewWadsByIwad(String iwad) {
+        log.info("Creating wad subscription with iwad: {}", iwad);
+        return publisher.retrieveWadByIwad(iwad);
+    }
+
 }

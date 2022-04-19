@@ -18,6 +18,10 @@ public class WadPublisher {
         return sink.asFlux();
     }
 
+    public Publisher<Wad> retrieveWadByIwad(String iwad) {
+        return sink.asFlux().filter(w -> w.getIwad().equals(iwad));
+    }
+
     public void pushWad(Wad wad) {
         sink.emitNext(wad, Sinks.EmitFailureHandler.FAIL_FAST);
     }
