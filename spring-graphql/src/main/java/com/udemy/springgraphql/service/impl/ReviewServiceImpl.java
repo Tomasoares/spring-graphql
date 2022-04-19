@@ -1,11 +1,13 @@
 package com.udemy.springgraphql.service.impl;
 
+import com.udemy.springgraphql.graphql.resolvers.subscription.ReviewPublisher;
 import com.udemy.springgraphql.graphql.type.Review;
 import com.udemy.springgraphql.graphql.type.ReviewInput;
 import com.udemy.springgraphql.jpa.model.Map;
 import com.udemy.springgraphql.jpa.model.Wad;
 import com.udemy.springgraphql.jpa.repository.ReviewRepository;
 import com.udemy.springgraphql.service.ReviewService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,13 +19,17 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class ReviewServiceImpl implements ReviewService {
 
     private ReviewRepository repository;
 
-    public ReviewServiceImpl(ReviewRepository repository) {
+    private ReviewPublisher publisher;
+
+    public ReviewServiceImpl(ReviewRepository repository, ReviewPublisher publisher) {
         super();
         this.repository = repository;
+        this.publisher = publisher;
     }
 
     @Override
@@ -53,6 +59,10 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public UUID create(ReviewInput review) {
         com.udemy.springgraphql.jpa.model.Review save = this.repository.save(toJPA(review));
+
+        log.info("Publishing saved review {] to subscribe", save.getId());
+        this.publisher.publish(toGraphQL(save), save.getWad().getId());
+
         return save.getId();
     }
 
