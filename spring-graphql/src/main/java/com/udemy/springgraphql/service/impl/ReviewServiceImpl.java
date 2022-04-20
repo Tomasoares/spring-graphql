@@ -1,11 +1,14 @@
 package com.udemy.springgraphql.service.impl;
 
+import com.udemy.springgraphql.exception.ResourceNotFoundException;
 import com.udemy.springgraphql.graphql.resolvers.subscription.ReviewPublisher;
 import com.udemy.springgraphql.graphql.type.Review;
 import com.udemy.springgraphql.graphql.type.ReviewInput;
 import com.udemy.springgraphql.jpa.model.Map;
 import com.udemy.springgraphql.jpa.model.Wad;
+import com.udemy.springgraphql.jpa.repository.MapRepository;
 import com.udemy.springgraphql.jpa.repository.ReviewRepository;
+import com.udemy.springgraphql.jpa.repository.WadRepository;
 import com.udemy.springgraphql.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +28,9 @@ import java.util.stream.Collectors;
 public class ReviewServiceImpl implements ReviewService {
 
     private final ReviewRepository repository;
+    private final MapRepository mapRepository;
+    private final WadRepository wadRepository;
+
     private final ReviewPublisher publisher;
 
     @Override
@@ -53,6 +59,14 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public UUID create(ReviewInput review) {
+        if (!Objects.isNull(review.getMapId()) && !mapRepository.existsById(review.getMapId())) {
+            throw new ResourceNotFoundException("No map found with id " + review.getMapId());
+        }
+
+        if (!Objects.isNull(review.getWadId()) && !wadRepository.existsById(review.getWadId())) {
+            throw new ResourceNotFoundException("No Wad found with id " + review.getWadId());
+        }
+
         com.udemy.springgraphql.jpa.model.Review save = this.repository.save(toJPA(review));
 
         log.info("Publishing saved review {] to subscribe", save.getId());
