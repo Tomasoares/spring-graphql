@@ -23,7 +23,7 @@ public class ReviewMapper {
 
     public static List<Review> convertList(final List<com.udemy.springgraphql.jpa.model.Review> reviews) {
         return reviews.stream()
-                .map(this::toGraphQL)
+                .map(ReviewMapper::toGraphQL)
                 .collect(Collectors.toList());
     }
 
