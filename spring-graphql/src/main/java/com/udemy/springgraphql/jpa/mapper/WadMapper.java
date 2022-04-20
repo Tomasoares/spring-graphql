@@ -11,7 +11,7 @@ public class WadMapper {
     public static List<Wad> convertList(final List<com.udemy.springgraphql.jpa.model.Wad> fromDb) {
         return fromDb
                 .stream()
-                .map(this::toGraphQLWad)
+                .map(WadMapper::toGraphQLWad)
                 .collect(Collectors.toList());
     }
 
