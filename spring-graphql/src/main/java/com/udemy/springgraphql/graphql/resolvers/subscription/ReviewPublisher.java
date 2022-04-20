@@ -17,7 +17,7 @@ public class ReviewPublisher {
         this.sink = Sinks.many().replay().all();
     }
 
-    public void publish(Review r, UUID wadId) {
+    public void publish(final Review r, final UUID wadId) {
         ReviewSubscribe subscribe = ReviewSubscribe.builder()
                 .review(r)
                 .wadId(wadId)
@@ -26,7 +26,7 @@ public class ReviewPublisher {
         this.sink.emitNext(subscribe, Sinks.EmitFailureHandler.FAIL_FAST);
     }
 
-    public Publisher<Review> retrieveReviewByWadId(UUID wadId) {
+    public Publisher<Review> retrieveReviewByWadId(final UUID wadId) {
         return sink.asFlux()
                 .filter(r -> wadId.equals(r.getWadId()))
                 .map(ReviewSubscribe::getReview);

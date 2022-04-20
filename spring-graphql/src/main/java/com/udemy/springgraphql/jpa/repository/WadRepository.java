@@ -12,8 +12,8 @@ import java.util.UUID;
 public interface WadRepository extends JpaRepository<Wad, UUID> {
 
     @Query("SELECT m.wad FROM Map m WHERE m.id = :idMap")
-    Optional<Wad> findByMapId(UUID idMap);
+    Optional<Wad> findByMapId(final UUID idMap);
 
     @Query("SELECT r.wad FROM Review r WHERE r.id = :idReview")
-    Optional<Wad> findByReviewId(UUID idReview);
+    Optional<Wad> findByReviewId(final UUID idReview);
 }

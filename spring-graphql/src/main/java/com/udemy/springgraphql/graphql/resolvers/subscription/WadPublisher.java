@@ -18,7 +18,7 @@ public class WadPublisher {
         return sink.asFlux();
     }
 
-    public Publisher<Wad> retrieveWadByIwad(String iwad) {
+    public Publisher<Wad> retrieveWadByIwad(final String iwad) {
         return sink.asFlux().filter(w -> w.getIwad().equals(iwad));
     }
 

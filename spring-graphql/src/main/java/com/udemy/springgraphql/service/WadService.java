@@ -8,14 +8,14 @@ import java.util.UUID;
 
 public interface WadService {
 
-    Wad findWadByMap(UUID id);
+    Wad findWadByMap(final UUID id);
 
     List<Wad> findAll();
 
-    List<Wad> getCacowards(int count, int page);
+    List<Wad> getCacowards(final int count, final int page);
 
-    UUID createWad(WadInput input);
+    UUID createWad(final WadInput input);
 
-    Wad findWadByReview(UUID id);
+    Wad findWadByReview(final UUID id);
 
 }
