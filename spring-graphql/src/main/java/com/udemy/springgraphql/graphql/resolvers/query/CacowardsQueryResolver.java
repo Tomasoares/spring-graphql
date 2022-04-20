@@ -6,19 +6,16 @@ import java.util.UUID;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.udemy.springgraphql.graphql.type.Wad;
 import com.udemy.springgraphql.service.WadService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
 @Component
 @Log4j2
+@RequiredArgsConstructor
 public class CacowardsQueryResolver implements GraphQLQueryResolver {
 
-    private WadService service;
-
-    public CacowardsQueryResolver(WadService service) {
-        super();
-        this.service = service;
-    }
+    private final WadService service;
 
     public List<Wad> cacowards(int count, int page) {
         log.info("Retrieving cacowards... count: {}, page: {}");

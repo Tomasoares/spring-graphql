@@ -5,6 +5,7 @@ import com.udemy.springgraphql.graphql.type.Wad;
 import com.udemy.springgraphql.graphql.type.WadInput;
 import com.udemy.springgraphql.jpa.repository.WadRepository;
 import com.udemy.springgraphql.service.WadService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,17 +18,11 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class WadServiceImpl implements WadService {
 
     private final WadRepository repository;
-
     private final WadPublisher publisher;
-
-    public WadServiceImpl(WadRepository repository, WadPublisher publisher) {
-        super();
-        this.repository = repository;
-        this.publisher = publisher;
-    }
 
     @Override
     public Wad findWadByMap(UUID idMap) {

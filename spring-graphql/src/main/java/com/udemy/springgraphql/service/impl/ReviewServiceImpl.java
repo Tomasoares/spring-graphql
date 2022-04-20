@@ -7,6 +7,7 @@ import com.udemy.springgraphql.jpa.model.Map;
 import com.udemy.springgraphql.jpa.model.Wad;
 import com.udemy.springgraphql.jpa.repository.ReviewRepository;
 import com.udemy.springgraphql.service.ReviewService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,17 +21,11 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
 
-    private ReviewRepository repository;
-
-    private ReviewPublisher publisher;
-
-    public ReviewServiceImpl(ReviewRepository repository, ReviewPublisher publisher) {
-        super();
-        this.repository = repository;
-        this.publisher = publisher;
-    }
+    private final ReviewRepository repository;
+    private final ReviewPublisher publisher;
 
     @Override
     public List<Review> findReviewsByWadId(UUID wadId, int count) {

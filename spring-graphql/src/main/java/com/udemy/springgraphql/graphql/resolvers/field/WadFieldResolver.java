@@ -6,6 +6,7 @@ import com.udemy.springgraphql.graphql.type.Review;
 import com.udemy.springgraphql.graphql.type.Wad;
 import com.udemy.springgraphql.service.MapService;
 import com.udemy.springgraphql.service.ReviewService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
@@ -13,17 +14,11 @@ import java.util.*;
 
 @Component
 @Log4j2
+@RequiredArgsConstructor
 public class WadFieldResolver implements GraphQLResolver<Wad> {
 
-    private MapService mapService;
-
-    private ReviewService reviewService;
-
-    public WadFieldResolver(MapService mapService, ReviewService reviewService) {
-        super();
-        this.mapService = mapService;
-        this.reviewService = reviewService;
-    }
+    private final MapService mapService;
+    private final ReviewService reviewService;
 
     public List<Map> maps(Wad wad) {
         log.info("Retrieving maps from wad {}", wad.getId());

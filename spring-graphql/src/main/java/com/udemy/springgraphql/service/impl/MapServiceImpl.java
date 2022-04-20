@@ -5,6 +5,7 @@ import com.udemy.springgraphql.graphql.type.MapInput;
 import com.udemy.springgraphql.jpa.model.Wad;
 import com.udemy.springgraphql.jpa.repository.MapRepository;
 import com.udemy.springgraphql.service.MapService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,14 +14,10 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class MapServiceImpl implements MapService {
 
     private final MapRepository repository;
-
-    public MapServiceImpl(MapRepository repository) {
-        super();
-        this.repository = repository;
-    }
 
     @Override
     public List<Map> findAll(UUID idWad) {
