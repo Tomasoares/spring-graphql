@@ -4,17 +4,17 @@ import com.udemy.springgraphql.graphql.resolvers.subscription.WadPublisher;
 import com.udemy.springgraphql.graphql.type.Wad;
 import com.udemy.springgraphql.graphql.type.WadInput;
 import com.udemy.springgraphql.jpa.repository.WadRepository;
+import com.udemy.springgraphql.jpa.mapper.WadMapper;
 import com.udemy.springgraphql.service.WadService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
+
+import static com.udemy.springgraphql.jpa.mapper.WadMapper.*;
 
 @Service
 @Slf4j
@@ -28,7 +28,7 @@ public class WadServiceImpl implements WadService {
     public Wad findWadByMap(final UUID idMap) {
         //TODO: use optional
         final var wad = repository.findByMapId(idMap);
-        return wad.map(this::toGraphQLWad).orElse(null);
+        return wad.map(WadMapper::toGraphQLWad).orElse(null);
     }
 
     @Override
@@ -56,30 +56,6 @@ public class WadServiceImpl implements WadService {
     @Override
     public Wad findWadByReview(final UUID reviewId) {
         final var found = this.repository.findByReviewId(reviewId);
-        return found.map(this::toGraphQLWad).orElse(null);
-    }
-
-    private List<Wad> convertList(final List<com.udemy.springgraphql.jpa.model.Wad> fromDb) {
-        return fromDb
-                .stream()
-                .map(this::toGraphQLWad)
-                .collect(Collectors.toList());
-    }
-
-    private Wad toGraphQLWad(final com.udemy.springgraphql.jpa.model.Wad wad) {
-        return Wad.builder()
-                .id(wad.getId())
-                .name(wad.getName())
-                .genre(wad.getGenre())
-                .iwad(wad.getIwad())
-                .build();
-    }
-
-    private com.udemy.springgraphql.jpa.model.Wad toJPA(final WadInput input) {
-        return com.udemy.springgraphql.jpa.model.Wad.builder()
-                .name(input.getName())
-                .genre(input.getGenre())
-                .iwad(input.getIwad())
-                .build();
+        return found.map(WadMapper::toGraphQLWad).orElse(null);
     }
 }

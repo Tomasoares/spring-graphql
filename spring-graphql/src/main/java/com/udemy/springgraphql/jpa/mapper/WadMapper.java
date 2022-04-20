@@ -1,4 +1,4 @@
-package com.udemy.springgraphql.mapper;
+package com.udemy.springgraphql.jpa.mapper;
 
 import com.udemy.springgraphql.graphql.type.Wad;
 import com.udemy.springgraphql.graphql.type.WadInput;

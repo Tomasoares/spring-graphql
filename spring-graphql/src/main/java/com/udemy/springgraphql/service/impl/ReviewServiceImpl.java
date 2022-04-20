@@ -4,6 +4,7 @@ import com.udemy.springgraphql.exception.ResourceNotFoundException;
 import com.udemy.springgraphql.graphql.resolvers.subscription.ReviewPublisher;
 import com.udemy.springgraphql.graphql.type.Review;
 import com.udemy.springgraphql.graphql.type.ReviewInput;
+import com.udemy.springgraphql.jpa.mapper.ReviewMapper;
 import com.udemy.springgraphql.jpa.model.Map;
 import com.udemy.springgraphql.jpa.model.Wad;
 import com.udemy.springgraphql.jpa.repository.MapRepository;
@@ -21,6 +22,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
+import static com.udemy.springgraphql.jpa.mapper.ReviewMapper.*;
+import static com.udemy.springgraphql.jpa.mapper.ReviewMapper.convertList;
+import static com.udemy.springgraphql.jpa.mapper.ReviewMapper.toJPA;
 
 @Service
 @Slf4j
@@ -74,30 +79,4 @@ public class ReviewServiceImpl implements ReviewService {
 
         return save.getId();
     }
-
-    private com.udemy.springgraphql.jpa.model.Review toJPA(final ReviewInput review) {
-        return com.udemy.springgraphql.jpa.model.Review.builder()
-                .description(review.getDescription())
-                .author(review.getAuthor())
-                .rating(review.getRating())
-                .wad(!Objects.isNull(review.getWadId())? Wad.builder().id(review.getWadId()).build() : null)
-                .map(!Objects.isNull(review.getMapId())? Map.builder().id(review.getMapId()).build() : null)
-                .build();
-    }
-
-    private List<Review> convertList(final List<com.udemy.springgraphql.jpa.model.Review> reviews) {
-        return reviews.stream()
-                .map(this::toGraphQL)
-                .collect(Collectors.toList());
-    }
-
-    private Review toGraphQL(final com.udemy.springgraphql.jpa.model.Review review) {
-        return Review.builder()
-                .id(review.getId())
-                .author(review.getAuthor())
-                .description(review.getDescription())
-                .rating(review.getRating())
-                .build();
-    }
-
 }
