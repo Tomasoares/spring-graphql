@@ -34,31 +34,31 @@ public class ReviewServiceImpl implements ReviewService {
     private final ReviewPublisher publisher;
 
     @Override
-    public List<Review> findReviewsByWadId(UUID wadId, int count) {
-        Pageable page = PageRequest.of(0, count);
-        List<com.udemy.springgraphql.jpa.model.Review> reviews = this.repository.findAllByWadId(wadId, page);
+    public List<Review> findReviewsByWadId(final UUID wadId, final int count) {
+        final var page = PageRequest.of(0, count);
+        var reviews = this.repository.findAllByWadId(wadId, page);
 
         return convertList(reviews);
     }
 
     @Override
-    public List<Review> findReviewsByMapId(UUID mapId, int count) {
-        Pageable page = PageRequest.of(0, count);
-        List<com.udemy.springgraphql.jpa.model.Review> reviews = this.repository.findAllByMapId(mapId, page);
+    public List<Review> findReviewsByMapId(final UUID mapId, final int count) {
+        final var page = PageRequest.of(0, count);
+        final var reviews = this.repository.findAllByMapId(mapId, page);
 
         return convertList(reviews);
     }
 
     @Override
-    public List<Review> findAll(Integer offset, Integer size) {
-        Pageable page = PageRequest.of(offset, size);
-        Page<com.udemy.springgraphql.jpa.model.Review> reviews = this.repository.findAll(page);
+    public List<Review> findAll(final Integer offset, final Integer size) {
+        final var page = PageRequest.of(offset, size);
+        final var reviews = this.repository.findAll(page);
 
         return convertList(reviews.toList());
     }
 
     @Override
-    public UUID create(ReviewInput review) {
+    public UUID create(final ReviewInput review) {
         if (!Objects.isNull(review.getMapId()) && !mapRepository.existsById(review.getMapId())) {
             throw new ResourceNotFoundException("No map found with id " + review.getMapId());
         }
@@ -67,7 +67,7 @@ public class ReviewServiceImpl implements ReviewService {
             throw new ResourceNotFoundException("No Wad found with id " + review.getWadId());
         }
 
-        com.udemy.springgraphql.jpa.model.Review save = this.repository.save(toJPA(review));
+        final com.udemy.springgraphql.jpa.model.Review save = this.repository.save(toJPA(review));
 
         log.info("Publishing saved review {] to subscribe", save.getId());
         this.publisher.publish(toGraphQL(save), save.getWad().getId());
@@ -75,7 +75,7 @@ public class ReviewServiceImpl implements ReviewService {
         return save.getId();
     }
 
-    private com.udemy.springgraphql.jpa.model.Review toJPA(ReviewInput review) {
+    private com.udemy.springgraphql.jpa.model.Review toJPA(final ReviewInput review) {
         return com.udemy.springgraphql.jpa.model.Review.builder()
                 .description(review.getDescription())
                 .author(review.getAuthor())
@@ -85,13 +85,13 @@ public class ReviewServiceImpl implements ReviewService {
                 .build();
     }
 
-    private List<Review> convertList(List<com.udemy.springgraphql.jpa.model.Review> reviews) {
+    private List<Review> convertList(final List<com.udemy.springgraphql.jpa.model.Review> reviews) {
         return reviews.stream()
                 .map(this::toGraphQL)
                 .collect(Collectors.toList());
     }
 
-    private Review toGraphQL(com.udemy.springgraphql.jpa.model.Review review) {
+    private Review toGraphQL(final com.udemy.springgraphql.jpa.model.Review review) {
         return Review.builder()
                 .id(review.getId())
                 .author(review.getAuthor())

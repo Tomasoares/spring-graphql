@@ -16,9 +16,9 @@ public class ReviewMutationResolver implements GraphQLMutationResolver {
 
     private final ReviewService service;
 
-    public UUID createReview(ReviewInput review) {
+    public UUID createReview(final ReviewInput review) {
         log.info("Creating new wad: {}", review);
-        UUID id = this.service.create(review);
+        final var id = this.service.create(review);
 
         log.info("Generated id: {}", id);
         return id;

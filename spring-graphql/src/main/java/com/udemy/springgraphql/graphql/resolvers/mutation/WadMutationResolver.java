@@ -17,9 +17,9 @@ public class WadMutationResolver implements GraphQLMutationResolver {
 
     private final WadService service;
 
-    public UUID createWad(WadInput input) {
+    public UUID createWad(final WadInput input) {
         log.info("Creating wad: {}", input);
-        UUID id = this.service.createWad(input);
+        final var id = this.service.createWad(input);
 
         log.info("Created wad with id: {}", input);
         return id;

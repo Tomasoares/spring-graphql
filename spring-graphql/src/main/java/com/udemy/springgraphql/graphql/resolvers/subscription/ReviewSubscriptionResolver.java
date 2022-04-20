@@ -16,7 +16,7 @@ public class ReviewSubscriptionResolver implements GraphQLSubscriptionResolver {
 
     private final ReviewPublisher publisher;
 
-    public Publisher<Review> listenNewReviewsByWad(UUID wadId) {
+    public Publisher<Review> listenNewReviewsByWad(final UUID wadId) {
         log.info("listening to reviews of wad id {}", wadId);
         return this.publisher.retrieveReviewByWadId(wadId);
     }

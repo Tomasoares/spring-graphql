@@ -17,15 +17,15 @@ public class CacowardsQueryResolver implements GraphQLQueryResolver {
 
     private final WadService service;
 
-    public List<Wad> cacowards(int count, int page) {
+    public List<Wad> cacowards(final int count, final int page) {
         log.info("Retrieving cacowards... count: {}, page: {}");
-        List<Wad> cacowards = this.getCacowards(count, page);
+        final var cacowards = this.getCacowards(count, page);
 
         log.info("Retrieved cacowards: {}", cacowards);
         return cacowards;
     }
 
-    private List<Wad> getCacowards(int count, int page) {
+    private List<Wad> getCacowards(final int count, final int page) {
         return this.service.getCacowards(count, page);
     }
 

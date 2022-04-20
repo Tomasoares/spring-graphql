@@ -20,8 +20,8 @@ public class MapServiceImpl implements MapService {
     private final MapRepository repository;
 
     @Override
-    public List<Map> findAll(UUID idWad) {
-        List<com.udemy.springgraphql.jpa.model.Map> maps = repository.findByWadId(idWad);
+    public List<Map> findAll(final UUID idWad) {
+        final var maps = repository.findByWadId(idWad);
 
         return maps.stream()
                 .map(this::toGraphQLMap)
@@ -29,27 +29,27 @@ public class MapServiceImpl implements MapService {
     }
 
     @Override
-    public UUID createMap(MapInput input) {
-        com.udemy.springgraphql.jpa.model.Map map = toJPAMap(input);
+    public UUID createMap(final MapInput input) {
+        final var map = toJPAMap(input);
         this.repository.saveAndFlush(map);
 
         return map.getId();
     }
 
     @Override
-    public Integer getMapCountByWadId(com.udemy.springgraphql.graphql.type.Wad wad) {
+    public Integer getMapCountByWadId(final com.udemy.springgraphql.graphql.type.Wad wad) {
         return this.repository.countByWadId(wad.getId());
     }
 
     @Override
-    public Map findMapByReview(UUID idReview) {
-        Optional<com.udemy.springgraphql.jpa.model.Map> map = this.repository.findByReviewId(idReview);
+    public Map findMapByReview(final UUID idReview) {
+        final var map = this.repository.findByReviewId(idReview);
 
         return map.map(this::toGraphQLMap).orElse(null);
     }
 
-    private com.udemy.springgraphql.jpa.model.Map toJPAMap(MapInput input) {
-        Wad wad = Wad.builder().id(input.getWadId()).build();
+    private com.udemy.springgraphql.jpa.model.Map toJPAMap(final MapInput input) {
+        final var wad = Wad.builder().id(input.getWadId()).build();
 
         return com.udemy.springgraphql.jpa.model.Map.builder()
                 .author(input.getAuthor())
@@ -59,7 +59,7 @@ public class MapServiceImpl implements MapService {
                 .build();
     }
 
-    private Map toGraphQLMap(com.udemy.springgraphql.jpa.model.Map map) {
+    private Map toGraphQLMap(final com.udemy.springgraphql.jpa.model.Map map) {
         return Map.builder()
                 .id(map.getId())
                 .author(map.getAuthor())

@@ -12,10 +12,10 @@ import java.util.UUID;
 @Repository
 public interface MapRepository extends JpaRepository<Map, UUID> {
 
-    List<Map> findByWadId(UUID idWad);
+    List<Map> findByWadId(final UUID idWad);
 
-    Integer countByWadId(UUID id);
+    Integer countByWadId(final UUID id);
 
     @Query("SELECT r.map FROM Review r where r.id = :idReview")
-    Optional<Map> findByReviewId(UUID idReview);
+    Optional<Map> findByReviewId(final UUID idReview);
 }

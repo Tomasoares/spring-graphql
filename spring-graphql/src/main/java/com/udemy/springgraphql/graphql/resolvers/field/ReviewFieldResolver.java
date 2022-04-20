@@ -18,18 +18,18 @@ public class ReviewFieldResolver implements GraphQLResolver<Review> {
     private final WadService wadService;
     private final MapService mapService;
 
-    public Wad getWad(Review review) {
+    public Wad getWad(final Review review) {
         log.info("Finding wad of review: {}", review);
-        Wad wad = this.wadService.findWadByReview(review.getId());
+        final var wad = this.wadService.findWadByReview(review.getId());
 
         log.info("Found the following wad: {}", wad);
         return wad;
     }
 
-    public Map getMap(Review review) {
+    public Map getMap(final Review review) {
         log.info("Finding map of review: {}", review);
 
-        Map map = this.mapService.findMapByReview(review.getId());
+        final var map = this.mapService.findMapByReview(review.getId());
 
         log.info("Found the following map: {}", map);
         return map;

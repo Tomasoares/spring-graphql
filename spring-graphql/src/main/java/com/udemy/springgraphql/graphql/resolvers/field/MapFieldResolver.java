@@ -22,17 +22,17 @@ public class MapFieldResolver implements GraphQLResolver<Map> {
     private final WadService wadService;
     private final ReviewService reviewService;
 
-    public Wad wad(Map map) {
+    public Wad wad(final Map map) {
         log.info("Finding wad by map id: {}", map.getId());
-        Wad result = this.wadService.findWadByMap(map.getId());
+        final var result = this.wadService.findWadByMap(map.getId());
 
         log.info("Map found: {}", result);
         return result;
     }
 
-    public List<Review> reviews(Map map, Integer count) {
+    public List<Review> reviews(final Map map, final Integer count) {
         log.info("Retrieving reviews of map {}", map.getId());
-        List<Review> reviews = this.reviewService.findReviewsByMapId(map.getId(), count);
+        final var reviews = this.reviewService.findReviewsByMapId(map.getId(), count);
 
         log.info("Reviews found: {}", reviews);
         return reviews;

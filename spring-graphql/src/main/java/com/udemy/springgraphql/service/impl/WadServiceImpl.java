@@ -25,9 +25,9 @@ public class WadServiceImpl implements WadService {
     private final WadPublisher publisher;
 
     @Override
-    public Wad findWadByMap(UUID idMap) {
+    public Wad findWadByMap(final UUID idMap) {
         //TODO: use optional
-        Optional<com.udemy.springgraphql.jpa.model.Wad> wad = repository.findByMapId(idMap);
+        final var wad = repository.findByMapId(idMap);
         return wad.map(this::toGraphQLWad).orElse(null);
     }
 
@@ -37,14 +37,14 @@ public class WadServiceImpl implements WadService {
     }
 
     @Override
-    public List<Wad> getCacowards(int count, int page) {
-        Pageable repositoryPage = PageRequest.of(page, count);
+    public List<Wad> getCacowards(final int count, final int page) {
+        final var repositoryPage = PageRequest.of(page, count);
         return convertList(repository.findAll(repositoryPage).toList());
     }
 
     @Override
-    public UUID createWad(WadInput input) {
-        com.udemy.springgraphql.jpa.model.Wad jpa = toJPA(input);
+    public UUID createWad(final WadInput input) {
+        final var jpa = toJPA(input);
         this.repository.saveAndFlush(jpa);
 
         log.info("Adding new post {} to publisher", jpa);
@@ -54,19 +54,19 @@ public class WadServiceImpl implements WadService {
     }
 
     @Override
-    public Wad findWadByReview(UUID reviewId) {
-        Optional<com.udemy.springgraphql.jpa.model.Wad> found = this.repository.findByReviewId(reviewId);
+    public Wad findWadByReview(final UUID reviewId) {
+        final var found = this.repository.findByReviewId(reviewId);
         return found.map(this::toGraphQLWad).orElse(null);
     }
 
-    private List<Wad> convertList(List<com.udemy.springgraphql.jpa.model.Wad> fromDb) {
+    private List<Wad> convertList(final List<com.udemy.springgraphql.jpa.model.Wad> fromDb) {
         return fromDb
                 .stream()
                 .map(this::toGraphQLWad)
                 .collect(Collectors.toList());
     }
 
-    private Wad toGraphQLWad(com.udemy.springgraphql.jpa.model.Wad wad) {
+    private Wad toGraphQLWad(final com.udemy.springgraphql.jpa.model.Wad wad) {
         return Wad.builder()
                 .id(wad.getId())
                 .name(wad.getName())
@@ -75,7 +75,7 @@ public class WadServiceImpl implements WadService {
                 .build();
     }
 
-    private com.udemy.springgraphql.jpa.model.Wad toJPA(WadInput input) {
+    private com.udemy.springgraphql.jpa.model.Wad toJPA(final WadInput input) {
         return com.udemy.springgraphql.jpa.model.Wad.builder()
                 .name(input.getName())
                 .genre(input.getGenre())

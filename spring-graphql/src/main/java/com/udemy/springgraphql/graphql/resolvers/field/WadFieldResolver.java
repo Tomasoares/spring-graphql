@@ -20,22 +20,22 @@ public class WadFieldResolver implements GraphQLResolver<Wad> {
     private final MapService mapService;
     private final ReviewService reviewService;
 
-    public List<Map> maps(Wad wad) {
+    public List<Map> maps(final Wad wad) {
         log.info("Retrieving maps from wad {}", wad.getId());
-        List<Map> maps = this.mapService.findAll(wad.getId());
+        final var maps = this.mapService.findAll(wad.getId());
 
         log.info("Maps retrieved: {}", maps);
         return maps;
     }
 
-    public Integer mapCount(Wad wad) {
+    public Integer mapCount(final Wad wad) {
         log.info("Counting number of maps of wad: {}", wad.getId());
         return this.mapService.getMapCountByWadId(wad);
     }
 
-    public List<Review> reviews(Wad wad, Integer count) {
+    public List<Review> reviews(final Wad wad, final Integer count) {
         log.info("finding {} reviews from wad id {}", wad.getId(), count);
-        List<Review> reviews = this.reviewService.findReviewsByWadId(wad.getId(), count);
+        final var reviews = this.reviewService.findReviewsByWadId(wad.getId(), count);
 
         log.info("Retrieved the following reviews: {}", reviews);
         return reviews;

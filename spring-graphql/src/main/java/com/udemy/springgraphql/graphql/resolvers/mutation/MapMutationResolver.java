@@ -16,9 +16,9 @@ public class MapMutationResolver implements GraphQLMutationResolver {
 
     private final MapService service;
 
-    public UUID createMap(MapInput input) {
+    public UUID createMap(final MapInput input) {
         log.info("Creating map: {}", input);
-        UUID id = this.service.createMap(input);
+        final var id = this.service.createMap(input);
 
         log.info("Created map: {}", id);
         return id;

@@ -8,11 +8,11 @@ import java.util.UUID;
 
 public interface ReviewService {
 
-    List<Review> findReviewsByWadId(UUID wadId, int count);
+    List<Review> findReviewsByWadId(final UUID wadId, final int count);
 
-    List<Review> findReviewsByMapId(UUID mapId, int count);
+    List<Review> findReviewsByMapId(final UUID mapId, final int count);
 
-    List<Review> findAll(Integer offset, Integer size);
+    List<Review> findAll(final Integer offset, final Integer size);
 
-    UUID create(ReviewInput review);
+    UUID create(final ReviewInput review);
 }

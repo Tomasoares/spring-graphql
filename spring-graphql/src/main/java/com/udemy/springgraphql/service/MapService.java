@@ -11,12 +11,12 @@ import java.util.UUID;
 @Service
 public interface MapService {
 
-    List<Map> findAll(UUID idWad);
+    List<Map> findAll(final UUID idWad);
 
-    UUID createMap(MapInput input);
+    UUID createMap(final MapInput input);
 
-    Integer getMapCountByWadId(Wad wad);
+    Integer getMapCountByWadId(final Wad wad);
 
-    Map findMapByReview(UUID id);
+    Map findMapByReview(final UUID id);
     
 }

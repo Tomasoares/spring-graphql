@@ -16,9 +16,9 @@ public class ReviewQueryResolver implements GraphQLQueryResolver {
 
     private final ReviewService reviewService;
 
-    public List<Review> reviews(Integer count, Integer page) {
+    public List<Review> reviews(final Integer count, final Integer page) {
         log.info("Finding all reviews from page {} of size {}", page, count);
-        List<Review> reviews = this.reviewService.findAll(page, count);
+        final var reviews = this.reviewService.findAll(page, count);
 
         log.info("Found reviews: {}", reviews);
         return reviews;

@@ -12,7 +12,7 @@ public class ResourceNotFoundException extends RuntimeException implements Graph
     @Getter
     private final String message;
 
-    public ResourceNotFoundException(String message) {
+    public ResourceNotFoundException(final String message) {
         super(message);
         this.message = message;
     }

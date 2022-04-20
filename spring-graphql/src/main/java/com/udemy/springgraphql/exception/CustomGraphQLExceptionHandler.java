@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
 public class CustomGraphQLExceptionHandler implements GraphQLErrorHandler {
 
     @Override
-    public List<GraphQLError> processErrors(List<GraphQLError> errors) {
+    public List<GraphQLError> processErrors(final List<GraphQLError> errors) {
         return errors.stream().map(this::getError).collect(Collectors.toList());
     }
 
-    private GraphQLError getError(GraphQLError error) {
+    private GraphQLError getError(final GraphQLError error) {
         if (error instanceof ExceptionWhileDataFetching && ((ExceptionWhileDataFetching) error).getException() instanceof GraphQLError) {
             return (GraphQLError) ((ExceptionWhileDataFetching) error).getException();
         }
