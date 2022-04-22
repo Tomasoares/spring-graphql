@@ -4,6 +4,7 @@ import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.udemy.springgraphql.graphql.type.Wad;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -23,6 +24,7 @@ public class HelloWorldQueryResolver implements GraphQLQueryResolver {
         return Wad.builder()
                 .id(UUID.randomUUID())
                 .name("Valiant")
+                .released(LocalDate.now())
                 .build();
     }
 
