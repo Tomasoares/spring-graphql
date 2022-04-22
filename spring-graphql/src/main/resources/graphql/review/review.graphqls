@@ -5,4 +5,5 @@ type Review {
     rating: Int
     wad: Wad
     map: Map
+    published: DateTime
 }

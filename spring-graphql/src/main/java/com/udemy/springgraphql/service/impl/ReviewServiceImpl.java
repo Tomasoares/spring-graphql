@@ -1,31 +1,24 @@
 package com.udemy.springgraphql.service.impl;
 
 import com.udemy.springgraphql.exception.ResourceNotFoundException;
-import com.udemy.springgraphql.graphql.resolvers.subscription.ReviewPublisher;
+import com.udemy.springgraphql.graphql.resolver.subscription.ReviewPublisher;
 import com.udemy.springgraphql.graphql.type.Review;
 import com.udemy.springgraphql.graphql.type.ReviewInput;
-import com.udemy.springgraphql.jpa.mapper.ReviewMapper;
-import com.udemy.springgraphql.jpa.model.Map;
-import com.udemy.springgraphql.jpa.model.Wad;
 import com.udemy.springgraphql.jpa.repository.MapRepository;
 import com.udemy.springgraphql.jpa.repository.ReviewRepository;
 import com.udemy.springgraphql.jpa.repository.WadRepository;
 import com.udemy.springgraphql.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import static com.udemy.springgraphql.jpa.mapper.ReviewMapper.*;
-import static com.udemy.springgraphql.jpa.mapper.ReviewMapper.convertList;
-import static com.udemy.springgraphql.jpa.mapper.ReviewMapper.toJPA;
 
 @Service
 @Slf4j
@@ -72,11 +65,22 @@ public class ReviewServiceImpl implements ReviewService {
             throw new ResourceNotFoundException("No Wad found with id " + review.getWadId());
         }
 
-        final com.udemy.springgraphql.jpa.model.Review save = this.repository.save(toJPA(review));
+        final com.udemy.springgraphql.jpa.model.Review save = prepareSave(review);
+        this.repository.save(save);
 
-        log.info("Publishing saved review {] to subscribe", save.getId());
-        this.publisher.publish(toGraphQL(save), save.getWad().getId());
+        if (save.getWad() != null) {
+            log.info("Publishing saved review {] to subscribe", save.getId());
+            this.publisher.publish(toGraphQL(save), save.getWad().getId());
+        } else {
+            log.info("Only reviews of wad should be published");
+        }
 
         return save.getId();
+    }
+
+    protected com.udemy.springgraphql.jpa.model.Review prepareSave(ReviewInput review) {
+        final com.udemy.springgraphql.jpa.model.Review save = toJPA(review);
+        save.setPublished(OffsetDateTime.now());
+        return save;
     }
 }

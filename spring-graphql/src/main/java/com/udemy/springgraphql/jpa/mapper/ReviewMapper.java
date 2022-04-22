@@ -33,6 +33,7 @@ public class ReviewMapper {
                 .author(review.getAuthor())
                 .description(review.getDescription())
                 .rating(review.getRating())
+                .published(review.getPublished())
                 .build();
     }
 }
