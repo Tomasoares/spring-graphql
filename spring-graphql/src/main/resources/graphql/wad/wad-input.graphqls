@@ -2,4 +2,5 @@ input WadInput {
     name : String!
     genre: String
     iwad: String
+    released: Date
 }

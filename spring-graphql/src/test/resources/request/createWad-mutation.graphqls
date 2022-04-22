@@ -3,5 +3,6 @@ mutation {
         name: "BTSX"
         genre: "Adventure"
         iwad: "Doom II"
+        released: "2022-04-22"
     })
 }

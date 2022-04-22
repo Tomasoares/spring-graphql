@@ -29,4 +29,13 @@ public class WadsQueryResolverTest {
 
     }
 
+    @Test
+    public void givenWadsQueryReleased_whenWadsQuery_itShouldReturnWadsReleasedResponse() throws Exception {
+        GraphQLResponse response = graphQLTestTemplate.postForResource("request/wads-query-released.graphqls");
+        assertThat(response.isOk());
+
+        String read = JsonReaderUtil.read("response/wads-released-response.json");
+        assertEquals(read, response.getRawResponse().getBody(), true);
+
+    }
 }
