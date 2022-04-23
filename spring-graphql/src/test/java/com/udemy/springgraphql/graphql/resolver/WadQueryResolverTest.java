@@ -1,4 +1,4 @@
-package com.udemy.springgraphql.graphql.resolver.wad;
+package com.udemy.springgraphql.graphql.resolver;
 
 import com.graphql.spring.boot.test.GraphQLResponse;
 import com.graphql.spring.boot.test.GraphQLTestTemplate;

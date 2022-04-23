@@ -1,12 +1,10 @@
-package com.udemy.springgraphql.graphql.resolver.wad;
+package com.udemy.springgraphql.graphql.resolver;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.graphql.spring.boot.test.GraphQLResponse;
 import com.graphql.spring.boot.test.GraphQLTestTemplate;
 import com.udemy.springgraphql.TestApplication;
 import com.udemy.springgraphql.util.JsonReaderUtil;
-import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.helpers.MessageFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +42,7 @@ public class HelloWorldQueryResolverTest {
         GraphQLResponse response = template.postMultipart(telephoneQuery, vars);
 
         assertThat(response.isOk());
-        assertTrue(isErrorsEmpty(response));
+        assertTrue(areErrorsEmpty(response));
     }
 
     @Test
@@ -53,7 +51,7 @@ public class HelloWorldQueryResolverTest {
         GraphQLResponse response = template.postMultipart(telephoneQuery, vars);
 
         assertThat(response.isOk());
-        assertTrue(isErrorsEmpty(response));
+        assertTrue(areErrorsEmpty(response));
     }
 
     @Test
@@ -62,7 +60,7 @@ public class HelloWorldQueryResolverTest {
         GraphQLResponse response = template.postMultipart(telephoneQuery, vars);
 
         assertThat(response.isOk());
-        assertFalse(isErrorsEmpty(response));
+        assertFalse(areErrorsEmpty(response));
     }
 
     @Test
@@ -71,7 +69,7 @@ public class HelloWorldQueryResolverTest {
         GraphQLResponse response = template.postMultipart(telephoneQuery, vars);
 
         assertThat(response.isOk());
-        assertFalse(isErrorsEmpty(response));
+        assertFalse(areErrorsEmpty(response));
     }
 
     @Test
@@ -80,7 +78,7 @@ public class HelloWorldQueryResolverTest {
         GraphQLResponse response = template.postMultipart(telephoneQuery, vars);
 
         assertThat(response.isOk());
-        assertFalse(isErrorsEmpty(response));
+        assertFalse(areErrorsEmpty(response));
     }
 
     @Test
@@ -89,7 +87,7 @@ public class HelloWorldQueryResolverTest {
         GraphQLResponse response = template.postMultipart(telephoneQuery, vars);
 
         assertThat(response.isOk());
-        assertFalse(isErrorsEmpty(response));
+        assertFalse(areErrorsEmpty(response));
     }
 
     @Test
@@ -98,15 +96,34 @@ public class HelloWorldQueryResolverTest {
         GraphQLResponse response = template.postMultipart(telephoneQuery, vars);
 
         assertThat(response.isOk());
-        assertFalse(isErrorsEmpty(response));
+        assertFalse(areErrorsEmpty(response));
     }
 
     private String buildTelephoneVariables(String telephone) {
         return MessageFormatter.format("{\"phone\": \"{}\" }", telephone).getMessage();
     }
 
-    private boolean isErrorsEmpty(GraphQLResponse response) throws IOException {
+    private boolean areErrorsEmpty(GraphQLResponse response) throws IOException {
         JsonNode jsonData = response.readTree().get("errors");
         return jsonData == null;
+    }
+
+    String emailQuery = "query($email: Email) {helloWorld(email: $email)}";
+
+    @Test
+    public void givenCorrectEmail_whenHelloWorld_itShouldReturnOkResponse() throws Exception {
+        var vars = buildTelephoneVariables("tomas@gmail.com");
+        GraphQLResponse response = template.postMultipart(emailQuery, vars);
+
+        assertThat(response.isOk());
+        assertTrue(areErrorsEmpty(response));
+    }
+
+    @Test
+    public void givenCorrectEmail_whenGetDevelopersEmail_itShouldReturnEmail() throws Exception {
+        GraphQLResponse response = template.postForResource("request/getDeveloperEmail-query.graphqls");
+
+        assertThat(response.isOk());
+        assertTrue(response.get("$.data.getDeveloperEmail").equals("tomassoares@gmail.com"));
     }
 }

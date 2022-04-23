@@ -12,8 +12,12 @@ import java.util.UUID;
 @Component
 public class HelloWorldQueryResolver implements GraphQLQueryResolver {
 
-    public String helloWorld(String phoneNumber) {
+    public String helloWorld(String phoneNumber, String email) {
         return "Hello World is working!!1!";
+    }
+
+    public String getDeveloperEmail() {
+        return "tomassoares@gmail.com";
     }
 
     public String findWad(String name, String author) {

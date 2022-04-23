@@ -1,4 +1,4 @@
-package com.udemy.springgraphql.graphql.resolver.wad;
+package com.udemy.springgraphql.graphql.resolver;
 
 import com.graphql.spring.boot.test.GraphQLResponse;
 import com.graphql.spring.boot.test.GraphQLTestTemplate;
@@ -12,17 +12,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
-public class CacowardsQueryResolverTest {
+public class FindWadQueryResolverTest {
 
     @Autowired
     private GraphQLTestTemplate template;
 
     @Test
-    public void givenCacowardsQuery_whenCacowardsQuery_itShouldReturnResponse() throws Exception {
-        GraphQLResponse response = template.postForResource("request/cacowards-query.graphqls");
+    public void givenWadsQuery_whenWadsQuery_itShouldReturnWadsResponse() throws Exception {
+        GraphQLResponse response = template.postForResource("request/findWad-query.graphqls");
         assertThat(response.isOk());
 
-        String read = JsonReaderUtil.read("response/cacowards-response.json");
+        String read = JsonReaderUtil.read("response/findWad-response.json");
         assertEquals(read, response.getRawResponse().getBody(), true);
 
     }
