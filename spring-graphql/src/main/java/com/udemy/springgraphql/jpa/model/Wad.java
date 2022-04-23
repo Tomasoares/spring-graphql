@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
 
@@ -26,6 +27,10 @@ public class Wad {
     private String name;
     private String genre;
     private String iwad;
+    private LocalDate released;
+
+    @Column(name = "download_link")
+    private String downloadLink;
 
     @OneToMany(mappedBy = "wad", fetch = FetchType.LAZY)
     private Set<Map> maps;

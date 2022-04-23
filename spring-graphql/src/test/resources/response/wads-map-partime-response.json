@@ -1,0 +1,41 @@
+{
+  "data": {
+    "wads": [
+      {
+        "id": "a15d5780-b37d-11ec-b909-0242ac120002",
+        "maps": [
+          {
+            "id": "f4c55928-97e5-4e03-b6de-d8b720033f80",
+            "partime": "00:00:30-03:00"
+          }
+        ]
+      },
+      {
+        "id": "c9b5a5d4-b37d-11ec-b909-0242ac120002",
+        "maps": [
+          {
+            "id": "b95f5661-2cd9-4508-a2ce-0d765c7fb38d",
+            "partime": null
+          }
+        ]
+      },
+      {
+        "id": "f2fe8302-b37d-11ec-b909-0242ac120002",
+        "maps": [
+          {
+            "id": "ea03b49d-9505-41ea-8702-3ee4ab3b9a2c",
+            "partime": null
+          },
+          {
+            "id": "8275fbdc-d3db-4d44-9a93-774a0c72a791",
+            "partime": null
+          }
+        ]
+      },
+      {
+        "id": "24f0241c-38a2-4777-aafe-b7f9df60d2b4",
+        "maps": []
+      }
+    ]
+  }
+}

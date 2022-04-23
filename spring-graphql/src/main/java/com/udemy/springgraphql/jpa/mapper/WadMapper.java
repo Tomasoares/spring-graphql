@@ -21,6 +21,8 @@ public class WadMapper {
                 .name(wad.getName())
                 .genre(wad.getGenre())
                 .iwad(wad.getIwad())
+                .released(wad.getReleased())
+                .downloadLink(wad.getDownloadLink())
                 .build();
     }
 
@@ -29,6 +31,8 @@ public class WadMapper {
                 .name(input.getName())
                 .genre(input.getGenre())
                 .iwad(input.getIwad())
+                .released(input.getReleased())
+                .downloadLink(input.getDownloadLink())
                 .build();
     }
 }

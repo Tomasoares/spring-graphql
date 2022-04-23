@@ -3,4 +3,5 @@ input MapInput {
     author: String!
     enemies: Int
     wadId: ID!
+    partime: Time
 }

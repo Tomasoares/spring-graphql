@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -14,5 +16,7 @@ public class WadInput {
     private String name;
     private String iwad;
     private String genre;
+    private LocalDate released;
+    private String downloadLink;
 
 }

@@ -1,0 +1,8 @@
+mutation {
+    createMap (map: {
+        author: ""
+        name: ""
+        wadId: "f2fe8302-b37d-11ec-b909-0242ac120002"
+        partime: "00:00:30-03:00"
+    })
+}

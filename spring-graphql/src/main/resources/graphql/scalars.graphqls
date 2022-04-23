@@ -1,0 +1,9 @@
+#From Jackson converters
+scalar Date
+scalar Time
+scalar DateTime
+
+#Custom
+scalar PhoneNumber
+scalar DownloadLink
+scalar Email

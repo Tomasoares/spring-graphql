@@ -4,6 +4,8 @@ type Wad {
     genre: String
     iwad: String
     mapCount: Int
+    released: Date
+    downloadLink: DownloadLink
     maps: [Map]
     reviews(count: Int): [Review]
 }

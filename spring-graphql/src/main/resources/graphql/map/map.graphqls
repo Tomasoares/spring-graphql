@@ -3,6 +3,7 @@ type Map {
     name : String!
     enemies: Int
     author: String
+    partime: Time
     wad: Wad
     reviews(count: Int) : [Review]
 }

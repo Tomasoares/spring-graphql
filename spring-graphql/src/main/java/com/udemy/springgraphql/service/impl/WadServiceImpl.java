@@ -1,6 +1,6 @@
 package com.udemy.springgraphql.service.impl;
 
-import com.udemy.springgraphql.graphql.resolvers.subscription.WadPublisher;
+import com.udemy.springgraphql.graphql.resolver.subscription.WadPublisher;
 import com.udemy.springgraphql.graphql.type.Wad;
 import com.udemy.springgraphql.graphql.type.WadInput;
 import com.udemy.springgraphql.jpa.repository.WadRepository;

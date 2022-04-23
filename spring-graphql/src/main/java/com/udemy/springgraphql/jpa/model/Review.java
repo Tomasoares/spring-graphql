@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
@@ -25,6 +27,7 @@ public class Review {
     private String author;
     private String description;
     private int rating;
+    private OffsetDateTime published;
 
     @ManyToOne
     @JoinColumn(name = "wadId")

@@ -13,6 +13,7 @@ public class MapMapper {
                 .author(input.getAuthor())
                 .name(input.getName())
                 .enemies(input.getEnemies())
+                .partime(input.getPartime())
                 .wad(wad)
                 .build();
     }
@@ -23,6 +24,7 @@ public class MapMapper {
                 .author(map.getAuthor())
                 .name(map.getName())
                 .enemies(map.getEnemies())
+                .partime(map.getPartime())
                 .build();
     }
 }
