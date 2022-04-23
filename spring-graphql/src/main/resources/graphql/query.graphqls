@@ -1,5 +1,5 @@
 type Query {
-    helloWorld : String!
+    helloWorld(phoneNumber: PhoneNumber): String!
     findWad(name: String!, author: String): String!
     wad: Wad!
     wads: [Wad]

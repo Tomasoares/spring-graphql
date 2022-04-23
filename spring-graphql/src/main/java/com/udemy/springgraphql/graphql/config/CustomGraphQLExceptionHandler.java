@@ -1,4 +1,4 @@
-package com.udemy.springgraphql.exception;
+package com.udemy.springgraphql.graphql.config;
 
 import graphql.ExceptionWhileDataFetching;
 import graphql.GraphQLError;
