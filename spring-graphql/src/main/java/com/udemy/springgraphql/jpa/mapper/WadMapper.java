@@ -22,6 +22,7 @@ public class WadMapper {
                 .genre(wad.getGenre())
                 .iwad(wad.getIwad())
                 .released(wad.getReleased())
+                .downloadLink(wad.getDownloadLink())
                 .build();
     }
 
@@ -31,6 +32,7 @@ public class WadMapper {
                 .genre(input.getGenre())
                 .iwad(input.getIwad())
                 .released(input.getReleased())
+                .downloadLink(input.getDownloadLink())
                 .build();
     }
 }

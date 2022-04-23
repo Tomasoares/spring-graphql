@@ -5,3 +5,4 @@ scalar DateTime
 
 #Custom
 scalar PhoneNumber
+scalar DownloadLink

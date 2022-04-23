@@ -3,4 +3,5 @@ input WadInput {
     genre: String
     iwad: String
     released: Date
+    downloadLink: DownloadLink
 }

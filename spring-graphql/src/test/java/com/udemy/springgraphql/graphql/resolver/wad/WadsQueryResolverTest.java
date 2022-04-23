@@ -45,4 +45,13 @@ public class WadsQueryResolverTest {
         String read = JsonReaderUtil.read("response/wads-map-partime-response.json");
         assertEquals(read, response.getRawResponse().getBody(), true);
     }
+
+    @Test
+    public void givenWadsQueryDownloadLink_whenWadsQuery_itShouldReturnWadsDownloadLinkResponse() throws Exception {
+        GraphQLResponse response = graphQLTestTemplate.postForResource("request/wads-query-downloadLink.graphqls");
+        assertThat(response.isOk());
+
+        String read = JsonReaderUtil.read("response/wads-downloadLink-response.json");
+        assertEquals(read, response.getRawResponse().getBody(), true);
+    }
 }

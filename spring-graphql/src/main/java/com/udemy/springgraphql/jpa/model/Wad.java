@@ -29,6 +29,9 @@ public class Wad {
     private String iwad;
     private LocalDate released;
 
+    @Column(name = "download_link")
+    private String downloadLink;
+
     @OneToMany(mappedBy = "wad", fetch = FetchType.LAZY)
     private Set<Map> maps;
 

@@ -17,5 +17,6 @@ public class WadInput {
     private String iwad;
     private String genre;
     private LocalDate released;
+    private String downloadLink;
 
 }

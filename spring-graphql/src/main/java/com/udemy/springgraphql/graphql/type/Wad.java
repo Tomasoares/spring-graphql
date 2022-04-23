@@ -19,4 +19,5 @@ public class Wad {
     private String genre;
     private String iwad;
     private LocalDate released;
+    private String downloadLink;
 }

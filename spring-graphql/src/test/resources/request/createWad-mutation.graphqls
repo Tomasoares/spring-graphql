@@ -4,5 +4,6 @@ mutation {
         genre: "Adventure"
         iwad: "Doom II"
         released: "2022-04-22"
+        downloadLink: "link"
     })
 }
