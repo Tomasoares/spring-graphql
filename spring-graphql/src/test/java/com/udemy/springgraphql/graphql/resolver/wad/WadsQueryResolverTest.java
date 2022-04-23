@@ -26,7 +26,6 @@ public class WadsQueryResolverTest {
 
         String read = JsonReaderUtil.read("response/wads-response.json");
         assertEquals(read, response.getRawResponse().getBody(), true);
-
     }
 
     @Test
@@ -36,6 +35,14 @@ public class WadsQueryResolverTest {
 
         String read = JsonReaderUtil.read("response/wads-released-response.json");
         assertEquals(read, response.getRawResponse().getBody(), true);
+    }
 
+    @Test
+    public void givenWadsQueryMapPartime_whenWadsQuery_itShouldReturnWadsMapPartimeResponse() throws Exception {
+        GraphQLResponse response = graphQLTestTemplate.postForResource("request/wads-query-map-partime.graphqls");
+        assertThat(response.isOk());
+
+        String read = JsonReaderUtil.read("response/wads-map-partime-response.json");
+        assertEquals(read, response.getRawResponse().getBody(), true);
     }
 }

@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalTime;
+import java.time.OffsetTime;
 import java.util.UUID;
 
 @Builder
@@ -17,5 +19,6 @@ public class Map {
     private String name;
     private int enemies;
     private String author;
+    private OffsetTime partime;
 
 }

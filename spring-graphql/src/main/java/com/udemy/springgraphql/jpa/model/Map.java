@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.time.Instant;
+import java.time.LocalTime;
+import java.time.OffsetTime;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -26,7 +29,8 @@ public class Map {
 
     private String name;
     private String author;
-    private int enemies;
+    private Integer enemies;
+    private OffsetTime partime;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "wad_id")

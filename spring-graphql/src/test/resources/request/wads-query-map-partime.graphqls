@@ -1,0 +1,9 @@
+query {
+    wads {
+      	id,
+      	maps {
+          id,
+          partime
+        }
+    }
+}

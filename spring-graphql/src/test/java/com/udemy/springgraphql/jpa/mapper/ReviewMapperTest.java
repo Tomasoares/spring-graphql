@@ -1,10 +1,8 @@
-package com.udemy.springgraphql.mapper.jpa;
+package com.udemy.springgraphql.jpa.mapper;
 
-import com.udemy.springgraphql.jpa.mapper.ReviewMapper;
 import com.udemy.springgraphql.jpa.model.Review;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 import static org.hamcrest.CoreMatchers.is;
