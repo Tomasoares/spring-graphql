@@ -1,7 +1,6 @@
 package com.udemy.springgraphql.util;
 
 import org.apache.commons.io.IOUtils;
-import org.mockito.internal.util.io.IOUtil;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;

@@ -37,6 +37,12 @@ public class WadServiceImpl implements WadService {
     }
 
     @Override
+    public List<Wad> findAll(List<UUID> ids) {
+        final var wads = repository.findAllById(ids);
+        return convertList(wads);
+    }
+
+    @Override
     public List<Wad> getCacowards(final int count, final int page) {
         final var repositoryPage = PageRequest.of(page, count);
         return convertList(repository.findAll(repositoryPage).toList());

@@ -1,7 +1,7 @@
 package com.udemy.springgraphql.graphql.config;
 
-import com.coxautodev.graphql.tools.SchemaParserOptions;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import graphql.kickstart.tools.SchemaParserOptions;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,7 +1,7 @@
 package com.udemy.springgraphql.graphql.resolver.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.udemy.springgraphql.graphql.type.Wad;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;

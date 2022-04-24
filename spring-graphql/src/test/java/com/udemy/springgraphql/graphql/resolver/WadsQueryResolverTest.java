@@ -4,17 +4,21 @@ import com.graphql.spring.boot.test.GraphQLResponse;
 import com.graphql.spring.boot.test.GraphQLTestTemplate;
 import com.udemy.springgraphql.TestApplication;
 import com.udemy.springgraphql.util.JsonReaderUtil;
+import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.CoreMatchers.is;
 import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 public class WadsQueryResolverTest {
+
+    private static final String NOT_EMPTY_VALIDATION = "Ids can't be null";
 
     @Autowired
     private GraphQLTestTemplate graphQLTestTemplate;
@@ -53,5 +57,23 @@ public class WadsQueryResolverTest {
 
         String read = JsonReaderUtil.read("response/wads-downloadLink-response.json");
         assertEquals(read, response.getRawResponse().getBody(), true);
+    }
+
+    @Test
+    public void givenGroupWadsQueryIds_whenWadsQuery_itShouldReturnResponse() throws Exception {
+        GraphQLResponse response = graphQLTestTemplate.postForResource("request/groupWads-query-ids.graphqls");
+        assertThat(response.isOk());
+
+        String read = JsonReaderUtil.read("response/groupWads-response-ids.json");
+        assertEquals(read, response.getRawResponse().getBody(), true);
+    }
+
+    @Test
+    public void givenGroupWadsQueryIdsEmpty_whenWadsQuery_itShouldReturnValidationError() throws Exception {
+        GraphQLResponse response = graphQLTestTemplate.postForResource("request/groupWads-query-idsEmpty.graphqls");
+        assertThat(response.isOk());
+
+        String message = response.get("$.errors[0].message");
+        MatcherAssert.assertThat(message, is(NOT_EMPTY_VALIDATION));
     }
 }

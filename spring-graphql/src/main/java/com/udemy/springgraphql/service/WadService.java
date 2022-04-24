@@ -12,10 +12,11 @@ public interface WadService {
 
     List<Wad> findAll();
 
+    List<Wad> findAll(List<UUID> ids);
+
     List<Wad> getCacowards(final int count, final int page);
 
     UUID createWad(final WadInput input);
 
     Wad findWadByReview(final UUID id);
-
 }

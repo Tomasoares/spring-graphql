@@ -1,0 +1,6 @@
+query {
+  groupWads (ids: []) {
+    id,
+    name
+  }
+}

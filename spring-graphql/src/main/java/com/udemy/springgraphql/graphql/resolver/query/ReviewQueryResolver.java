@@ -1,8 +1,8 @@
 package com.udemy.springgraphql.graphql.resolver.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.udemy.springgraphql.graphql.type.Review;
 import com.udemy.springgraphql.service.ReviewService;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

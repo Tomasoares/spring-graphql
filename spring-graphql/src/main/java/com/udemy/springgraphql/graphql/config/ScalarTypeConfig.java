@@ -25,7 +25,7 @@ public class ScalarTypeConfig {
     public GraphQLScalarType dateTime() { return ExtendedScalars.DateTime; }
 
     @Bean
-    public RegexScalar phoneNumber() {
+    public GraphQLScalarType phoneNumber() {
         return ExtendedScalars.newRegexScalar("PhoneNumber")
                 .addPattern(Pattern.compile("[(]\\d{2}[)]*\\d{5}-\\d{4}"))
                 .build();
