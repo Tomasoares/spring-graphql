@@ -2,8 +2,7 @@ package com.udemy.springgraphql.graphql.config;
 
 import graphql.ExceptionWhileDataFetching;
 import graphql.GraphQLError;
-import graphql.servlet.GraphQLErrorHandler;
-import org.hibernate.graph.Graph;
+import graphql.kickstart.execution.error.GraphQLErrorHandler;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

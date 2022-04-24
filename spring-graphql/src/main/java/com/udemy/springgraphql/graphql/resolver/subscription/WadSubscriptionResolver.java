@@ -1,7 +1,7 @@
 package com.udemy.springgraphql.graphql.resolver.subscription;
 
-import com.coxautodev.graphql.tools.GraphQLSubscriptionResolver;
 import com.udemy.springgraphql.graphql.type.Wad;
+import graphql.kickstart.tools.GraphQLSubscriptionResolver;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.reactivestreams.Publisher;

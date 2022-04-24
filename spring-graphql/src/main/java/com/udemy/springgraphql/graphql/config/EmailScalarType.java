@@ -3,6 +3,7 @@ package com.udemy.springgraphql.graphql.config;
 import graphql.language.StringValue;
 import graphql.schema.*;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,7 +19,16 @@ public class EmailScalarType {
     public GraphQLScalarType email() {
         log.info("Configuring email scalar type");
 
-        return new GraphQLScalarType("Email", "Custom email scalar type", new Coercing() {
+        return new GraphQLScalarType.Builder()
+                .name("Email")
+                .description("Custom email scalar type")
+                .coercing(newEmailCoercing())
+                .build();
+    }
+
+    @NotNull
+    private Coercing newEmailCoercing() {
+        return new Coercing() {
 
             @Override
             public Object serialize(Object dataFetcherResult) throws CoercingSerializeException {
@@ -58,7 +68,7 @@ public class EmailScalarType {
 
                 throw new CoercingParseLiteralException(ERROR_MSG);
             }
-        });
+        };
     }
 
     protected boolean isEmailType(String email) {

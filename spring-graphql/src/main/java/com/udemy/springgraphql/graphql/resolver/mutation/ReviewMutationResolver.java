@@ -1,8 +1,8 @@
 package com.udemy.springgraphql.graphql.resolver.mutation;
 
-import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import com.udemy.springgraphql.graphql.type.ReviewInput;
 import com.udemy.springgraphql.service.ReviewService;
+import graphql.kickstart.tools.GraphQLMutationResolver;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

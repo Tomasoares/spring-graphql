@@ -1,11 +1,11 @@
 package com.udemy.springgraphql.graphql.resolver.field;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
 import com.udemy.springgraphql.graphql.type.Map;
 import com.udemy.springgraphql.graphql.type.Review;
 import com.udemy.springgraphql.graphql.type.Wad;
 import com.udemy.springgraphql.service.ReviewService;
 import com.udemy.springgraphql.service.WadService;
+import graphql.kickstart.tools.GraphQLResolver;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
