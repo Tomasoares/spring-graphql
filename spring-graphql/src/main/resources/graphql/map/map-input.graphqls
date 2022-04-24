@@ -1,7 +1,7 @@
 input MapInput {
     name: String!
     author: String!
-    enemies: Int
+    enemies: Int @PositiveOrZero(message: "Number of enemies must be greater or equal to 0")
     wadId: ID!
     partime: Time
 }

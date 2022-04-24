@@ -25,7 +25,7 @@ public class WadQueryResolver implements GraphQLQueryResolver {
         return wads;
     }
 
-    public List<Wad> getWads(List<UUID> ids) {
+    public List<Wad> getGroupWads(List<UUID> ids) {
         log.info("Retrieving all wads with ids: {}", ids);
         final var wads = this.service.findAll(ids);
 

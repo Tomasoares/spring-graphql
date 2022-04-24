@@ -19,6 +19,7 @@ import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 public class WadsQueryResolverTest {
 
     private static final String NOT_EMPTY_VALIDATION = "Ids can't be null";
+
     @Autowired
     private GraphQLTestTemplate graphQLTestTemplate;
 
@@ -59,17 +60,17 @@ public class WadsQueryResolverTest {
     }
 
     @Test
-    public void givenWadsQueryIds_whenWadsQuery_itShouldReturnResponse() throws Exception {
-        GraphQLResponse response = graphQLTestTemplate.postForResource("request/wads-query-ids.graphqls");
+    public void givenGroupWadsQueryIds_whenWadsQuery_itShouldReturnResponse() throws Exception {
+        GraphQLResponse response = graphQLTestTemplate.postForResource("request/groupWads-query-ids.graphqls");
         assertThat(response.isOk());
 
-        String read = JsonReaderUtil.read("response/wads-response-ids.json");
+        String read = JsonReaderUtil.read("response/groupWads-response-ids.json");
         assertEquals(read, response.getRawResponse().getBody(), true);
     }
 
     @Test
-    public void givenWadsQueryIdsEmpty_whenWadsQuery_itShouldReturnValidationError() throws Exception {
-        GraphQLResponse response = graphQLTestTemplate.postForResource("request/wads-query-idsEmpty.graphqls");
+    public void givenGroupWadsQueryIdsEmpty_whenWadsQuery_itShouldReturnValidationError() throws Exception {
+        GraphQLResponse response = graphQLTestTemplate.postForResource("request/groupWads-query-idsEmpty.graphqls");
         assertThat(response.isOk());
 
         String message = response.get("$.errors[0].message");
