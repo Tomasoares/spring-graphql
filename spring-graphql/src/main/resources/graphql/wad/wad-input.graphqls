@@ -1,5 +1,5 @@
 input WadInput {
-    name : String!
+    name : String! @NotBlank(message: "Name cannot be blank!")
     genre: String
     iwad: String
     released: Date

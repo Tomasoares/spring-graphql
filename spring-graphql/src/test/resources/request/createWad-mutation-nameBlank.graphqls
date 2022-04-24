@@ -1,0 +1,6 @@
+mutation {
+    createWad (wad: {
+        name: ""
+        iwad: "Doom II"
+    })
+}

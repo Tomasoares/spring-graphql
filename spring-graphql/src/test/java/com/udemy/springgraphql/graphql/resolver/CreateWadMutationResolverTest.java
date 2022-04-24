@@ -22,6 +22,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
 public class CreateWadMutationResolverTest {
 
+    private static final Object VALIDATION_MESSAGE = "Name cannot be blank!";
+
     @Autowired
     private GraphQLTestTemplate template;
 
@@ -29,7 +31,7 @@ public class CreateWadMutationResolverTest {
     private WadRepository repository;
 
     @Test
-    public void givenWadsQuery_whenWadsQuery_itShouldReturnWadsResponse() throws Exception {
+    public void givenWad_whenCreateWadMutation_itShouldReturnWadsResponse() throws Exception {
         GraphQLResponse response = template.postForResource("request/createWad-mutation.graphqls");
         assertTrue(response.isOk());
 
@@ -38,12 +40,21 @@ public class CreateWadMutationResolverTest {
     }
 
     @Test
-    public void givenWadsQuery_whenWadsQuery_itShouldFillDownloadLinkField() throws Exception {
+    public void givenWad_whenCreateWadMutation_itShouldFillDownloadLinkField() throws Exception {
         GraphQLResponse response = template.postForResource("request/createWad-mutation.graphqls");
         assertTrue(response.isOk());
 
         Optional<Wad> found = repository.findById(UUID.fromString(response.get("$.data.createWad")));
         assertTrue(found.isPresent());
         assertThat(found.get().getDownloadLink(), is(notNullValue()));
+    }
+
+    @Test
+    public void givenWadWithBlankName_whenCreateWadMutation_itShouldReturnValidationMessageError() throws Exception {
+        GraphQLResponse response = template.postForResource("request/createWad-mutation-nameBlank.graphqls");
+        assertTrue(response.isOk());
+
+        String message = response.get("$.errors[0].message");
+        assertThat(message, is(VALIDATION_MESSAGE));
     }
 }
