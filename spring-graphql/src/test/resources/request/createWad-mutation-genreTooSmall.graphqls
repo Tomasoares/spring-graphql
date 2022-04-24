@@ -1,0 +1,6 @@
+mutation {
+    createWad (wad: {
+        name: "Test"
+        genre: "AB"
+    })
+}

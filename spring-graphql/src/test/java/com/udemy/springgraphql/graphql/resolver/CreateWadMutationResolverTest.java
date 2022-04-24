@@ -5,7 +5,6 @@ import com.graphql.spring.boot.test.GraphQLTestTemplate;
 import com.udemy.springgraphql.TestApplication;
 import com.udemy.springgraphql.jpa.model.Wad;
 import com.udemy.springgraphql.jpa.repository.WadRepository;
-import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,7 +21,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
 public class CreateWadMutationResolverTest {
 
-    private static final Object VALIDATION_MESSAGE = "Name cannot be blank!";
+    private static final String NAME_BLANK_VALIDATION = "Name cannot be blank!";
+    private static final String GENRE_SIZE_VALIDATION = "Genre cannot be smaller than 3 or bigger than 50";
 
     @Autowired
     private GraphQLTestTemplate template;
@@ -55,6 +55,24 @@ public class CreateWadMutationResolverTest {
         assertTrue(response.isOk());
 
         String message = response.get("$.errors[0].message");
-        assertThat(message, is(VALIDATION_MESSAGE));
+        assertThat(message, is(NAME_BLANK_VALIDATION));
+    }
+
+    @Test
+    public void givenWadWithGenreTooSmall_whenCreateWadMutation_itShouldReturnValidationMessageError() throws Exception {
+        GraphQLResponse response = template.postForResource("request/createWad-mutation-genreTooSmall.graphqls");
+        assertTrue(response.isOk());
+
+        String message = response.get("$.errors[0].message");
+        assertThat(message, is(GENRE_SIZE_VALIDATION));
+    }
+
+    @Test
+    public void givenWadWithGenreTooBig_whenCreateWadMutation_itShouldReturnValidationMessageError() throws Exception {
+        GraphQLResponse response = template.postForResource("request/createWad-mutation-genreTooBig.graphqls");
+        assertTrue(response.isOk());
+
+        String message = response.get("$.errors[0].message");
+        assertThat(message, is(GENRE_SIZE_VALIDATION));
     }
 }

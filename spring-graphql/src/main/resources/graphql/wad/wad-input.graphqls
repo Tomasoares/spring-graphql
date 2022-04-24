@@ -1,6 +1,6 @@
 input WadInput {
     name : String! @NotBlank(message: "Name cannot be blank!")
-    genre: String
+    genre: String @Size(min: 3, max: 5, message: "Genre cannot be smaller than 3 or bigger than 50")
     iwad: String
     released: Date
     downloadLink: DownloadLink
