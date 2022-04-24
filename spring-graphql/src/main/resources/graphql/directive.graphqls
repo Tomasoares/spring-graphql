@@ -1,2 +1,3 @@
 directive @NotBlank(message: String!) on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
 directive @Size(min: Int!, max: Int!, message: String!) on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+directive @NotEmpty(message: String!) on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION

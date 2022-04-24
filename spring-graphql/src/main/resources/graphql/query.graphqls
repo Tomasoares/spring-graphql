@@ -4,6 +4,7 @@ type Query {
     findWad(name: String!, author: String): String!
     wad: Wad!
     wads: [Wad]
+    wads(ids: [ID]! @NotEmpty(message: "Ids can't be null")): [Wad]
     topWads: [String!]!
     cacowards(count: Int!, page: Int!): [Wad]!
     reviews(count: Int!, page: Int!): [Review]!

@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 @Component
 @Log4j2
@@ -22,7 +23,14 @@ public class WadQueryResolver implements GraphQLQueryResolver {
 
         log.info("Returned wads: {}", wads);
         return wads;
+    }
 
+    public List<Wad> getWads(List<UUID> ids) {
+        log.info("Retrieving all wads with ids: {}", ids);
+        final var wads = this.service.findAll(ids);
+
+        log.info("Returned wads: {}", wads);
+        return wads;
     }
 
 }

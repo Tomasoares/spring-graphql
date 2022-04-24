@@ -1,0 +1,6 @@
+query {
+  wads (ids: ["a15d5780-b37d-11ec-b909-0242ac120002", "c9b5a5d4-b37d-11ec-b909-0242ac120002"]) {
+    id,
+    name
+  }
+}
