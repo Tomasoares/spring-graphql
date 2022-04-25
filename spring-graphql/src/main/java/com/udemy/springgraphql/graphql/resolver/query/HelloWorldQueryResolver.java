@@ -1,5 +1,6 @@
 package com.udemy.springgraphql.graphql.resolver.query;
 
+import com.udemy.springgraphql.graphql.config.context.CustomGraphQLContext;
 import com.udemy.springgraphql.graphql.type.Wad;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import graphql.schema.DataFetchingEnvironment;
@@ -32,6 +33,7 @@ public class HelloWorldQueryResolver implements GraphQLQueryResolver {
     public Wad wad(DataFetchingEnvironment env) {
         var fields = env.getSelectionSet().getFields().stream().map(f -> f.getName()).collect(Collectors.toList());
         log.info("Selected fields: {}", fields);
+        log.info("User Id: {}", ((CustomGraphQLContext) env.getContext()).getUserId());
 
         return Wad.builder()
                 .id(UUID.randomUUID())
