@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Component
 @Slf4j
@@ -28,7 +29,10 @@ public class HelloWorldQueryResolver implements GraphQLQueryResolver {
         return String.format("Finding wad %s, by author %s", name, author);
     }
 
-    public Wad wad() {
+    public Wad wad(DataFetchingEnvironment env) {
+        var fields = env.getSelectionSet().getFields().stream().map(f -> f.getName()).collect(Collectors.toList());
+        log.info("Selected fields: {}", fields);
+
         return Wad.builder()
                 .id(UUID.randomUUID())
                 .name("Valiant")
