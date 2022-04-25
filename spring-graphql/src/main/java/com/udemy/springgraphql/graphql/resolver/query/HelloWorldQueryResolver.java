@@ -2,6 +2,8 @@ package com.udemy.springgraphql.graphql.resolver.query;
 
 import com.udemy.springgraphql.graphql.type.Wad;
 import graphql.kickstart.tools.GraphQLQueryResolver;
+import graphql.schema.DataFetchingEnvironment;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -10,9 +12,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Component
+@Slf4j
 public class HelloWorldQueryResolver implements GraphQLQueryResolver {
 
-    public String helloWorld(String phoneNumber, String email) {
+    public String helloWorld(String phoneNumber, String email, DataFetchingEnvironment env) {
+        log.info("Generated the following execution Id: {}", env.getExecutionId());
         return "Hello World is working!!1!";
     }
 
