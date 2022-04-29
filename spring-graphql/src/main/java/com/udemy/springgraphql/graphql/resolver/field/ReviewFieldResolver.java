@@ -1,6 +1,6 @@
 package com.udemy.springgraphql.graphql.resolver.field;
 
-import com.udemy.springgraphql.graphql.dataloader.DataLoaderRegistryFactory;
+import com.udemy.springgraphql.graphql.config.dataloader.DataLoaderRegistryFactory;
 import com.udemy.springgraphql.graphql.type.Map;
 import com.udemy.springgraphql.graphql.type.Review;
 import com.udemy.springgraphql.graphql.type.Wad;
@@ -28,24 +28,17 @@ public class ReviewFieldResolver implements GraphQLResolver<Review> {
 
     private final ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
-    public CompletableFuture<Wad> getWad(final Review review) {
+    public CompletableFuture<Wad> getWad(final Review review, final DataFetchingEnvironment env) {
         log.info("Finding wad of review: {}", review);
-        return CompletableFuture.supplyAsync(() -> findWadById(review));
-    }
 
-    private Wad findWadById(Review review) {
-        final var wad = this.wadService.findWadByReview(review.getId());
-        log.info("Found the following wad: {}", wad);
-
-        return wad;
+        DataLoader<UUID, Wad> dataLoader = env.getDataLoader(DataLoaderRegistryFactory.WAD_BY_REVIEW);
+        return dataLoader.load(review.getId());
     }
 
     public CompletableFuture<Map> getMap(final Review review, final DataFetchingEnvironment env) {
         log.info("Finding map of review: {}", review);
-        String idMap = env.getArgument("id");
 
         DataLoader<UUID, Map> dataLoader = env.getDataLoader(DataLoaderRegistryFactory.MAP_BY_REVIEW);
-
         return dataLoader.load(review.getId());
     }
 }

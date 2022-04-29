@@ -18,11 +18,9 @@ public interface ReviewRepository extends JpaRepository<Review, UUID> {
 
     List<Review> findAllByMapId(final UUID mapId, final Pageable page);
 
-    @Query("SELECT r FROM Review r where r.id in (:ids)")
-    @EntityGraph(type = EntityGraph.EntityGraphType.FETCH, attributePaths = "map")
+    @Query("SELECT r FROM Review r JOIN FETCH r.map where r.id in (:ids)")
     List<Review> findAllByIdPlusMaps(Set<UUID> ids);
 
-    @Query("SELECT r FROM Review r where r.id in (:ids)")
-    @EntityGraph(type = EntityGraph.EntityGraphType.FETCH, attributePaths = "wad")
+    @Query("SELECT r FROM Review r JOIN FETCH r.wad where r.id in (:ids)")
     List<Review> findAllByIdPlusWads(Set<UUID> ids);
 }

@@ -12,17 +12,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
-public class FindWadQueryResolverTest {
+public class CacowardsQueryIT {
 
     @Autowired
     private GraphQLTestTemplate template;
 
     @Test
-    public void givenWadsQuery_whenWadsQuery_itShouldReturnWadsResponse() throws Exception {
-        GraphQLResponse response = template.postForResource("request/findWad-query.graphqls");
+    public void givenCacowardsQuery_whenCacowardsQuery_itShouldReturnResponse() throws Exception {
+        GraphQLResponse response = template.postForResource("request/cacowards-query.graphqls");
         assertThat(response.isOk());
 
-        String read = JsonReaderUtil.read("response/findWad-response.json");
+        String read = JsonReaderUtil.read("response/cacowards-response.json");
         assertEquals(read, response.getRawResponse().getBody(), true);
 
     }

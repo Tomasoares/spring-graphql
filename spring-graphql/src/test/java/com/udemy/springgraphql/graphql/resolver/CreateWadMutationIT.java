@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
-public class CreateWadMutationResolverTest {
+public class CreateWadMutationIT {
 
     private static final String NAME_BLANK_VALIDATION = "Name cannot be blank!";
     private static final String GENRE_SIZE_VALIDATION = "Genre cannot be smaller than 3 or bigger than 50";

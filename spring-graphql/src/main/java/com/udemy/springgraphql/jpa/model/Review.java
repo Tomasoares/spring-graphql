@@ -29,11 +29,11 @@ public class Review {
     private int rating;
     private OffsetDateTime published;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "wadId")
     private Wad wad;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mapId")
     private Map map;
 

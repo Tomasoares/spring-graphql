@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
-public class WadQueryResolverTest {
+public class WadQueryIT {
 
     @Autowired
     private GraphQLTestTemplate template;

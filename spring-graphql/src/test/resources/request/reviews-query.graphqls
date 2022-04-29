@@ -1,0 +1,17 @@
+query {
+    reviews(count: 6, page: 0) {
+        id,
+        author,
+        description,
+        published,
+        rating
+        map {
+            id,
+            name
+        },
+        wad {
+            id,
+            name
+        }
+    }
+}

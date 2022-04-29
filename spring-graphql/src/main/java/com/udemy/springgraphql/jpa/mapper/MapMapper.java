@@ -7,8 +7,11 @@ import org.springframework.data.util.Pair;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
+import static java.util.Objects.isNull;
 
 public class MapMapper {
 
@@ -20,6 +23,7 @@ public class MapMapper {
 
     public static java.util.Map<UUID, Map> convertMapByReviewId(List<com.udemy.springgraphql.jpa.model.Review> reviews) {
         return reviews.stream()
+                .filter(r -> !isNull(r.getMap()))
                 .map(r -> Pair.of(r.getId(), toGraphQLMap(r.getMap())))
                 .collect(Collectors.toMap(p -> p.getFirst(), p -> p.getSecond()));
     }

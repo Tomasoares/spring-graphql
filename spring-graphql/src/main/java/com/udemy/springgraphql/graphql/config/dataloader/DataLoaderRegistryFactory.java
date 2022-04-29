@@ -1,4 +1,4 @@
-package com.udemy.springgraphql.graphql.dataloader;
+package com.udemy.springgraphql.graphql.config.dataloader;
 
 import com.udemy.springgraphql.graphql.type.Wad;
 import com.udemy.springgraphql.service.MapService;
@@ -20,11 +20,10 @@ import java.util.concurrent.Executors;
 @Slf4j
 public class DataLoaderRegistryFactory {
 
-    public static final String WAD = "WAD";
+    public static final String WAD_BY_REVIEW = "WAD";
     public static final String MAP_BY_REVIEW = "MAP";
 
-    private static final Executor wadThreadPool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-    private static final Executor mapThreadPool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+    private static final Executor threadPool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
     private final WadService wadService;
     private final MapService mapService;
@@ -33,17 +32,17 @@ public class DataLoaderRegistryFactory {
         log.info("Building all data loaders");
         DataLoaderRegistry registry = new DataLoaderRegistry();
         
-        registry.register(WAD, createWadDataLoader());
+        registry.register(WAD_BY_REVIEW, createWadByReviewDataLoader());
         registry.register(MAP_BY_REVIEW, createMapByReviewDataLoader());
 
         return registry;
     }
 
-    private DataLoader<UUID, Wad> createWadDataLoader() {
+    private DataLoader<UUID, Wad> createWadByReviewDataLoader() {
         log.info("Creating Wad data loader");
 
         return DataLoader.newMappedDataLoader((Set<UUID> ids) -> {
-            return CompletableFuture.supplyAsync(() -> wadService.findAllAsMap(ids), wadThreadPool);
+            return CompletableFuture.supplyAsync(() -> wadService.findAllByReviewIdAsMap(ids), threadPool);
         });
     }
 
@@ -51,7 +50,7 @@ public class DataLoaderRegistryFactory {
         log.info("Creating Map data loader");
 
         return DataLoader.newMappedDataLoader((Set<UUID> ids) -> {
-            return CompletableFuture.supplyAsync(() -> mapService.findAllByReviewIdAsMap(ids), mapThreadPool);
+            return CompletableFuture.supplyAsync(() -> mapService.findAllByReviewIdAsMap(ids), threadPool);
         });
     }
 }
