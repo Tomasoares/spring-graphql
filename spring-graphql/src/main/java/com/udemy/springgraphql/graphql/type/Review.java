@@ -20,5 +20,6 @@ public class Review {
     private String description;
     private int rating;
     private OffsetDateTime published;
+    private UUID idMap;
 
 }

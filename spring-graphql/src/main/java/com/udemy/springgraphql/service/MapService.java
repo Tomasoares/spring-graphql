@@ -6,6 +6,7 @@ import com.udemy.springgraphql.graphql.type.Wad;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -18,5 +19,6 @@ public interface MapService {
     Integer getMapCountByWadId(final Wad wad);
 
     Map findMapByReview(final UUID id);
-    
+
+    java.util.Map<UUID, Map> findAllByReviewIdAsMap(Set<UUID> ids);
 }

@@ -20,6 +20,7 @@ public class CacowardsQueryResolver implements GraphQLQueryResolver {
         log.info("Retrieving cacowards... count: {}, page: {}");
         final var cacowards = this.getCacowards(count, page);
 
+
         log.info("Retrieved cacowards: {}", cacowards);
         return cacowards;
     }
