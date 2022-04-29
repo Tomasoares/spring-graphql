@@ -1,0 +1,78 @@
+{
+  "data": {
+    "reviews": [
+      {
+        "id": "bb8f079f-182a-42b5-942d-818a5eb0f1fc",
+        "author": "rd",
+        "description": "very good",
+        "published": null,
+        "rating": 5,
+        "map": null,
+        "wad": {
+          "id": "a15d5780-b37d-11ec-b909-0242ac120002",
+          "name": "Valiant"
+        }
+      },
+      {
+        "id": "5260f931-3712-4f90-b43c-72c1ba44b157",
+        "author": "Deadwing",
+        "description": "good",
+        "published": null,
+        "rating": 4,
+        "map": null,
+        "wad": {
+          "id": "a15d5780-b37d-11ec-b909-0242ac120002",
+          "name": "Valiant"
+        }
+      },
+      {
+        "id": "84eeba16-0e40-4835-9de7-5aa4ff02c63e",
+        "author": "FrancisT15",
+        "description": "decent",
+        "published": null,
+        "rating": 3,
+        "map": null,
+        "wad": {
+          "id": "a15d5780-b37d-11ec-b909-0242ac120002",
+          "name": "Valiant"
+        }
+      },
+      {
+        "id": "ff044f08-9235-410f-8ef7-a272bb48d90e",
+        "author": "rd",
+        "description": "I didnt like much",
+        "published": null,
+        "rating": 5,
+        "map": null,
+        "wad": {
+          "id": "c9b5a5d4-b37d-11ec-b909-0242ac120002",
+          "name": "Plutonia 2"
+        }
+      },
+      {
+        "id": "ce05e98f-e7ee-4ae1-8194-1b8e57608d67",
+        "author": "FrancisT15",
+        "description": "fun wad",
+        "published": null,
+        "rating": 4,
+        "map": null,
+        "wad": {
+          "id": "f2fe8302-b37d-11ec-b909-0242ac120002",
+          "name": "Moonblood"
+        }
+      },
+      {
+        "id": "948bcd45-3b95-4336-8a21-f1731d6bdd58",
+        "author": "Antares031",
+        "description": "greatest wad",
+        "published": null,
+        "rating": 5,
+        "map": null,
+        "wad": {
+          "id": "f2fe8302-b37d-11ec-b909-0242ac120002",
+          "name": "Moonblood"
+        }
+      }
+    ]
+  }
+}

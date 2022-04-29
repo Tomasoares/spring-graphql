@@ -8,22 +8,21 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
-public class TopWadsQueryResolverTests {
+public class ReviewsQueryIT {
 
     @Autowired
     private GraphQLTestTemplate template;
 
     @Test
-    public void givenTopWadsQuery_whenTopWadsQuery_itShouldReturnTopWadsResponse() throws Exception {
-        GraphQLResponse response = template.postForResource("request/topWads-query.graphqls");
-        assertThat(response.isOk());
+    public void givenWadQuery_whenWadQuery_itShouldReturnWadResponse() throws Exception {
+        GraphQLResponse response = template.postForResource("request/reviews-query.graphqls");
+        assertThat("response should be ok", response.isOk());
 
-        String read = JsonReaderUtil.read("response/topWads-response.json");
+        String read = JsonReaderUtil.read("response/reviews-response.json");
         assertEquals(read, response.getRawResponse().getBody(), true);
-
     }
 }

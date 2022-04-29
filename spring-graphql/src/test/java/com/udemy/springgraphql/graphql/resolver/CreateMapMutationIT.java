@@ -21,7 +21,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
-public class CreateMapMutationResolverTest {
+public class CreateMapMutationIT {
 
     @Autowired
     private GraphQLTestTemplate template;

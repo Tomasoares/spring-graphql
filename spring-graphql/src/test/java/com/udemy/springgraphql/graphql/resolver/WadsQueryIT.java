@@ -16,7 +16,7 @@ import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
-public class WadsQueryResolverTest {
+public class WadsQueryIT {
 
     private static final String NOT_EMPTY_VALIDATION = "Ids can't be null";
 
